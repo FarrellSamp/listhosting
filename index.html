@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 DITZZ NETWORK HOSTING</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@600;700&display=swap');
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#03060a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* Loading */
+    #loading{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:#03060a;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;z-index:9999;
+    }
+    .loader{
+      width:70px;height:70px;border-radius:50%;
+      border:6px solid rgba(255,255,255,0.1);
+      border-top:6px solid #00ffc6;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    #loading p{margin-top:15px;color:#00ffc6;font-weight:600;}
+
+    /* Navbar */
+    nav{
+      position:fixed;top:0;width:100%;display:flex;
+      justify-content:space-between;align-items:center;
+      background:rgba(0,0,0,0.7);backdrop-filter:blur(15px);
+      padding:15px 40px;z-index:1000;border-bottom:1px solid rgba(0,255,198,0.4);
+    }
+    nav .logo{
+      font-family:'Orbitron',sans-serif;font-size:1.5rem;color:#00ffc6;
+      text-shadow:0 0 15px #00ffc6;cursor:pointer;
+    }
+    nav ul{display:flex;gap:25px;list-style:none;}
+    nav ul li a{
+      color:white;text-decoration:none;font-weight:600;transition:.3s;
+    }
+    nav ul li a:hover{color:#00ffc6;text-shadow:0 0 10px #00ffc6;}
+
+    /* Hero */
+    header{
+      height:100vh;display:flex;flex-direction:column;
+      justify-content:center;align-items:center;text-align:center;
+      padding:0 20px;position:relative;overflow:hidden;
+    }
+    header h1{
+      font-family:'Orbitron',sans-serif;
+      color:#00ffc6;font-size:2.8rem;
+      text-shadow:0 0 25px #00ffc6;
+      animation:glow 2s infinite alternate;
+    }
+    @keyframes glow{
+      from{text-shadow:0 0 10px #00ffc6;}
+      to{text-shadow:0 0 30px #00bfa5;}
+    }
+    header p{margin-top:15px;color:#ccc;font-size:1.1rem;}
+    .typing{
+      color:#00ffc6;font-family:'Orbitron',sans-serif;
+      font-size:1.3rem;margin-top:10px;
+    }
+
+    /* Container */
+    .container{
+      max-width:1100px;margin:100px auto;padding:20px;
+    }
+
+    /* Paket Hosting */
+    .plans{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+    .plan{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(0,255,198,0.3);
+      border-radius:15px;
+      padding:25px;text-align:center;
+      backdrop-filter:blur(10px);
+      transition:all .4s ease;
+      opacity:0;transform:translateY(60px);
+    }
+    .plan.visible{opacity:1;transform:translateY(0);}
+    .plan:hover{
+      transform:translateY(-10px) scale(1.05);
+      box-shadow:0 0 25px rgba(0,255,198,0.5);
+    }
+    .plan h2{color:#00ffc6;margin-bottom:15px;}
+    .plan ul{list-style:none;text-align:left;margin-bottom:20px;}
+    .plan li{margin:6px 0;padding-left:10px;border-left:2px solid #00ffc6;}
+    .btn{
+      background:#00ffc6;color:#000;font-weight:700;
+      padding:10px 22px;border-radius:30px;text-decoration:none;
+      transition:.3s;box-shadow:0 0 20px #00ffc6;
+    }
+    .btn:hover{background:#00bfa5;color:white;}
+
+    /* Section */
+    section{
+      text-align:center;margin-top:80px;
+      opacity:0;transform:translateY(50px);
+      transition:all 0.6s ease;
+    }
+    section.visible{opacity:1;transform:translateY(0);}
+    section h3{
+      color:#00ffc6;font-size:1.7rem;margin-bottom:15px;
+      text-shadow:0 0 15px #00ffc6;
+    }
+    section ul{
+      list-style:none;display:inline-block;text-align:left;
+      line-height:1.8;
+    }
+
+    /* About */
+    #about{
+      background:linear-gradient(180deg,#05080b,#071219);
+      padding:70px 20px;border-top:1px solid rgba(0,255,198,0.2);
+      border-bottom:1px solid rgba(0,255,198,0.2);
+    }
+    #about p{max-width:800px;margin:0 auto;color:#ccc;font-size:1rem;}
+
+    /* Footer */
+    footer{
+      background:rgba(0,0,0,0.6);
+      text-align:center;padding:30px 10px;
+      border-top:2px solid #00ffc6;
+      color:#aaa;
+    }
+
+    /* Floating Chat + ScrollTop */
+    .whatsapp-float,.scroll-top{
+      position:fixed;border-radius:50%;width:60px;height:60px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;text-decoration:none;box-shadow:0 0 25px #00ffc6;
+      transition:.3s;z-index:999;
+    }
+    .whatsapp-float{
+      bottom:25px;right:25px;background:#00ffc6;color:#000;
+    }
+    .whatsapp-float:hover{transform:scale(1.1);background:#00bfa5;color:white;}
+    .scroll-top{
+      bottom:100px;right:25px;background:rgba(0,255,198,0.3);
+      color:#00ffc6;display:none;
+    }
+    .scroll-top.show{display:flex;}
+    .scroll-top:hover{background:#00ffc6;color:#000;}
+
+    /* Particles background */
+    #particles-js{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      z-index:-1;background:#03060a;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="loader"></div>
+    <p>Loading DITZZ Network...</p>
+  </div>
+
+  <div id="particles-js"></div>
+
+  <nav>
+    <div class="logo">🚀 DITZZ NETWORK</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#paket">Paket</a></li>
+      <li><a href="#benefit">Benefit</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <header id="home">
+    <h1>Hosting SA:MP Premium</h1>
+    <p>Kecepatan, Keamanan, dan Kestabilan dalam satu paket 🔥</p>
+    <div class="typing" id="typing"></div>
+  </header>
+
+  <div class="container" id="paket">
+    <div class="plans">
+      <div class="plan">
+        <h2>💰 HARGA: 5K</h2>
+        <ul>
+          <li>50 SLOT PLAYER</li>
+          <li>CPU 100</li>
+          <li>RAM/DISK 10GB</li>
+          <li>WINDOWS / LINUX</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%205K" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="plan">
+        <h2>💰 HARGA: 10K</h2>
+        <ul>
+          <li>150 SLOT PLAYER</li>
+          <li>CPU 150</li>
+          <li>RAM/DISK 25GB</li>
+          <li>WINDOWS / LINUX</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2010K" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="plan">
+        <h2>💰 HARGA: 15K</h2>
+        <ul>
+          <li>200 SLOT PLAYER</li>
+          <li>CPU 200</li>
+          <li>RAM/DISK 25GB</li>
+          <li>WINDOWS / LINUX</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2015K" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="plan">
+        <h2>💰 HARGA: 20K</h2>
+        <ul>
+          <li>250 SLOT PLAYER</li>
+          <li>CPU 250</li>
+          <li>RAM/DISK 80GB</li>
+          <li>WINDOWS / LINUX</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2020K" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <section id="benefit">
+      <h3>⚙️ BENEFIT</h3>
+      <ul>
+        <li>DATABASE [ON]</li>
+        <li>PMA [ON]</li>
+        <li>PORT VOICE [ON]</li>
+        <li>PING STABIL [20-45]</li>
+        <li>ANTI DDOS PROTECTION</li>
+        <li>99.9% UPTIME GARANSI</li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h3>🌐 Tentang DITZZ Network</h3>
+      <p>
+        Kami penyedia hosting SA:MP profesional yang fokus pada performa, stabilitas, dan keamanan.  
+        Dengan server berkecepatan tinggi, uptime 99.9%, dan dukungan teknis cepat,  
+        kami siap menjadi fondasi server impianmu. 🚀
+      </p>
+    </section>
+
+    <section id="kontak">
+      <h3>📞 Hubungi Kami</h3>
+      <p><a href="https://wa.me/6285191923519" style="color:#00ffc6;text-decoration:none;font-weight:600;">+62 851-9192-3519 [DITZZ]</a></p>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 DITZZ Network Hosting — Semua Hak Dilindungi 💎
+  </footer>
+
+  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">💬</a>
+  <a href="#home" class="scroll-top" id="scrollTop">⬆</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Loading screen
+    window.addEventListener('load',()=>{document.getElementById('loading').style.display='none';});
+    
+    // Intersection animation
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+    },{threshold:0.2});
+    document.querySelectorAll('.plan,section').forEach(el=>obs.observe(el));
+
+    // Particles background
+    particlesJS("particles-js",{
+      "particles":{"number":{"value":80},"color":{"value":"#00ffc6"},
+      "opacity":{"value":0.6},"size":{"value":3},
+      "line_linked":{"enable":true,"distance":150,"color":"#00ffc6","opacity":0.4,"width":1},
+      "move":{"enable":true,"speed":2}},
+      "interactivity":{"events":{"onhover":{"enable":true,"mode":"grab"}}},"retina_detect":true
+    });
+
+    // Typing text
+    const text="Cepat ⚡ | Murah 💰 | Stabil 🔥 | Aman ☁️ | DITZZ NETWORK HOSTING";
+    let i=0;
+    function typingEffect(){
+      if(i<text.length){
+        document.getElementById("typing").textContent+=text.charAt(i);
+        i++;setTimeout(typingEffect,100);
+      }
+    }
+    typingEffect();
+
+    // Scroll-top
+    const scrollTop=document.getElementById('scrollTop');
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>500)scrollTop.classList.add('show');
+      else scrollTop.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
