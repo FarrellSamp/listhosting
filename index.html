@@ -3,302 +3,563 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🚀 DITZZ NETWORK HOSTING</title>
+  <meta name="description" content="Premium SA:MP Hosting by DITZZ NETWORK — 99.9% uptime, anti-DDoS, ultra-low ping, harga mulai 5K." />
+  <title>DITZZ NETWORK • Premium SA:MP Hosting</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@600;700&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#03060a;
-      color:white;
-      overflow-x:hidden;
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --text-light: #a0a0a0;
+      --accent: #00f3ff;
+      --accent-secondary: #00ff9d;
+      --card-bg: linear-gradient(145deg, rgba(10,10,15,0.85), rgba(5,5,10,0.95));
+      --border-glow: rgba(0, 243, 255, 0.25);
     }
 
-    /* Loading */
-    #loading{
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:#03060a;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;z-index:9999;
-    }
-    .loader{
-      width:70px;height:70px;border-radius:50%;
-      border:6px solid rgba(255,255,255,0.1);
-      border-top:6px solid #00ffc6;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-    #loading p{margin-top:15px;color:#00ffc6;font-weight:600;}
-
-    /* Navbar */
-    nav{
-      position:fixed;top:0;width:100%;display:flex;
-      justify-content:space-between;align-items:center;
-      background:rgba(0,0,0,0.7);backdrop-filter:blur(15px);
-      padding:15px 40px;z-index:1000;border-bottom:1px solid rgba(0,255,198,0.4);
-    }
-    nav .logo{
-      font-family:'Orbitron',sans-serif;font-size:1.5rem;color:#00ffc6;
-      text-shadow:0 0 15px #00ffc6;cursor:pointer;
-    }
-    nav ul{display:flex;gap:25px;list-style:none;}
-    nav ul li a{
-      color:white;text-decoration:none;font-weight:600;transition:.3s;
-    }
-    nav ul li a:hover{color:#00ffc6;text-shadow:0 0 10px #00ffc6;}
-
-    /* Hero */
-    header{
-      height:100vh;display:flex;flex-direction:column;
-      justify-content:center;align-items:center;text-align:center;
-      padding:0 20px;position:relative;overflow:hidden;
-    }
-    header h1{
-      font-family:'Orbitron',sans-serif;
-      color:#00ffc6;font-size:2.8rem;
-      text-shadow:0 0 25px #00ffc6;
-      animation:glow 2s infinite alternate;
-    }
-    @keyframes glow{
-      from{text-shadow:0 0 10px #00ffc6;}
-      to{text-shadow:0 0 30px #00bfa5;}
-    }
-    header p{margin-top:15px;color:#ccc;font-size:1.1rem;}
-    .typing{
-      color:#00ffc6;font-family:'Orbitron',sans-serif;
-      font-size:1.3rem;margin-top:10px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
-    /* Container */
-    .container{
-      max-width:1100px;margin:100px auto;padding:20px;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
     }
 
-    /* Paket Hosting */
-    .plans{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:25px;
+    /* === Preloader === */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
     }
-    .plan{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(0,255,198,0.3);
-      border-radius:15px;
-      padding:25px;text-align:center;
-      backdrop-filter:blur(10px);
-      transition:all .4s ease;
-      opacity:0;transform:translateY(60px);
+    .preloader-glow {
+      width: 60px;
+      height: 60px;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background: conic-gradient(from 90deg, var(--accent), var(--accent-secondary), var(--accent));
+      animation: rotate 2s linear infinite;
+      position: relative;
     }
-    .plan.visible{opacity:1;transform:translateY(0);}
-    .plan:hover{
-      transform:translateY(-10px) scale(1.05);
-      box-shadow:0 0 25px rgba(0,255,198,0.5);
+    .preloader-glow::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      background: var(--bg);
+      border-radius: 50%;
     }
-    .plan h2{color:#00ffc6;margin-bottom:15px;}
-    .plan ul{list-style:none;text-align:left;margin-bottom:20px;}
-    .plan li{margin:6px 0;padding-left:10px;border-left:2px solid #00ffc6;}
-    .btn{
-      background:#00ffc6;color:#000;font-weight:700;
-      padding:10px 22px;border-radius:30px;text-decoration:none;
-      transition:.3s;box-shadow:0 0 20px #00ffc6;
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
     }
-    .btn:hover{background:#00bfa5;color:white;}
-
-    /* Section */
-    section{
-      text-align:center;margin-top:80px;
-      opacity:0;transform:translateY(50px);
-      transition:all 0.6s ease;
-    }
-    section.visible{opacity:1;transform:translateY(0);}
-    section h3{
-      color:#00ffc6;font-size:1.7rem;margin-bottom:15px;
-      text-shadow:0 0 15px #00ffc6;
-    }
-    section ul{
-      list-style:none;display:inline-block;text-align:left;
-      line-height:1.8;
+    #preloader p {
+      margin-top: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
     }
 
-    /* About */
-    #about{
-      background:linear-gradient(180deg,#05080b,#071219);
-      padding:70px 20px;border-top:1px solid rgba(0,255,198,0.2);
-      border-bottom:1px solid rgba(0,255,198,0.2);
+    /* === Navbar === */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
-    #about p{max-width:800px;margin:0 auto;color:#ccc;font-size:1rem;}
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
 
-    /* Footer */
-    footer{
-      background:rgba(0,0,0,0.6);
-      text-align:center;padding:30px 10px;
-      border-top:2px solid #00ffc6;
-      color:#aaa;
+    /* === Hero === */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    }
+    header p {
+      max-width: 650px;
+      color: var(--text-light);
+      font-size: 1.15rem;
+      margin-bottom: 30px;
     }
 
-    /* Floating Chat + ScrollTop */
-    .whatsapp-float,.scroll-top{
-      position:fixed;border-radius:50%;width:60px;height:60px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:26px;text-decoration:none;box-shadow:0 0 25px #00ffc6;
-      transition:.3s;z-index:999;
+    .tagline-glow {
+      display: inline-block;
+      padding: 8px 24px;
+      background: rgba(0, 20, 25, 0.6);
+      border: 1px solid var(--border-glow);
+      border-radius: 30px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      margin-top: 20px;
+      color: var(--accent);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
     }
-    .whatsapp-float{
-      bottom:25px;right:25px;background:#00ffc6;color:#000;
-    }
-    .whatsapp-float:hover{transform:scale(1.1);background:#00bfa5;color:white;}
-    .scroll-top{
-      bottom:100px;right:25px;background:rgba(0,255,198,0.3);
-      color:#00ffc6;display:none;
-    }
-    .scroll-top.show{display:flex;}
-    .scroll-top:hover{background:#00ffc6;color:#000;}
 
-    /* Particles background */
-    #particles-js{
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      z-index:-1;background:#03060a;
+    /* === Container === */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 80px;
+    }
+
+    section {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+    section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+      border-radius: 3px;
+    }
+
+    /* === Plans === */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .plan {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px 25px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .plan.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .plan::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--accent), var(--accent-secondary), var(--accent));
+      z-index: -1;
+      border-radius: 22px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .plan:hover::before {
+      opacity: 1;
+    }
+    .plan:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                  0 0 30px rgba(0, 243, 255, 0.3);
+    }
+    .plan h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      color: var(--accent);
+    }
+    .plan ul {
+      list-style: none;
+      margin: 25px 0;
+    }
+    .plan li {
+      padding: 10px 0;
+      color: var(--text-light);
+      font-size: 1.02rem;
+      position: relative;
+      padding-left: 25px;
+    }
+    .plan li::before {
+      content: "→";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 36px;
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+      transition: 0.6s;
+    }
+    .btn:hover {
+      background: rgba(0, 243, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    /* === Footer === */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* === WhatsApp Float === */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+      z-index: 999;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(0, 243, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
+    }
+
+    @media (max-width: 768px) {
+      nav ul { gap: 18px; font-size: 0.9rem; }
+      .container { padding: 80px 15px; }
+      section h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <div id="loading">
-    <div class="loader"></div>
-    <p>Loading DITZZ Network...</p>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-glow"></div>
+    <p>INITIALIZING DITZZ NETWORK...</p>
   </div>
 
-  <div id="particles-js"></div>
+  <!-- Partikel Background (Custom JS) -->
+  <canvas id="particles-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
 
+  <!-- Navbar -->
   <nav>
-    <div class="logo">🚀 DITZZ NETWORK</div>
+    <div class="logo">DITZZ</div>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#paket">Paket</a></li>
-      <li><a href="#benefit">Benefit</a></li>
-      <li><a href="#about">Tentang</a></li>
-      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="#paket">Plans</a></li>
+      <li><a href="#benefit">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#kontak">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- Hero -->
   <header id="home">
-    <h1>Hosting SA:MP Premium</h1>
-    <p>Kecepatan, Keamanan, dan Kestabilan dalam satu paket 🔥</p>
-    <div class="typing" id="typing"></div>
+    <h1>Premium SA:MP Hosting</h1>
+    <p>Enterprise-grade infrastructure with ultra-low latency, military-grade DDoS protection, and 99.99% guaranteed uptime.</p>
+    <div class="tagline-glow">⚡ Cepat • 💰 Efisien • 🛡️ Aman</div>
   </header>
 
-  <div class="container" id="paket">
-    <div class="plans">
-      <div class="plan">
-        <h2>💰 HARGA: 5K</h2>
-        <ul>
-          <li>50 SLOT PLAYER</li>
-          <li>CPU 100</li>
-          <li>RAM/DISK 10GB</li>
-          <li>WINDOWS / LINUX</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%205K" class="btn" target="_blank">Pesan Sekarang</a>
+  <!-- Main Content -->
+  <div class="container">
+
+    <section id="paket">
+      <h2>CHOOSE YOUR PLAN</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>💎 BASIC • IDR 5K</h3>
+          <ul>
+            <li>50 Player Slots</li>
+            <li>CPU 100</li>
+            <li>10GB RAM & Disk</li>
+            <li>Linux / Windows</li>
+          </ul>
+          <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%205K" class="btn" target="_blank" rel="noopener">Pesan Sekarang</a>
+        </div>
+        <div class="plan">
+          <h3>🚀 PRO • IDR 10K</h3>
+          <ul>
+            <li>150 Player Slots</li>
+            <li>CPU 150</li>
+            <li>25GB RAM & Disk</li>
+            <li>Linux / Windows</li>
+          </ul>
+          <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2010K" class="btn" target="_blank" rel="noopener">Pesan Sekarang</a>
+        </div>
+        <div class="plan">
+          <h3>🔥 VIP • IDR 15K</h3>
+          <ul>
+            <li>200 Player Slots</li>
+            <li>CPU 200</li>
+            <li>25GB RAM & Disk</li>
+            <li>Linux / Windows</li>
+          </ul>
+          <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2015K" class="btn" target="_blank" rel="noopener">Pesan Sekarang</a>
+        </div>
+        <div class="plan">
+          <h3>🌌 ENTERPRISE • IDR 20K</h3>
+          <ul>
+            <li>250 Player Slots</li>
+            <li>CPU 250</li>
+            <li>80GB RAM & Disk</li>
+            <li>Linux / Windows</li>
+          </ul>
+          <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2020K" class="btn" target="_blank" rel="noopener">Pesan Sekarang</a>
+        </div>
       </div>
-      <div class="plan">
-        <h2>💰 HARGA: 10K</h2>
-        <ul>
-          <li>150 SLOT PLAYER</li>
-          <li>CPU 150</li>
-          <li>RAM/DISK 25GB</li>
-          <li>WINDOWS / LINUX</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2010K" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-      <div class="plan">
-        <h2>💰 HARGA: 15K</h2>
-        <ul>
-          <li>200 SLOT PLAYER</li>
-          <li>CPU 200</li>
-          <li>RAM/DISK 25GB</li>
-          <li>WINDOWS / LINUX</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2015K" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-      <div class="plan">
-        <h2>💰 HARGA: 20K</h2>
-        <ul>
-          <li>250 SLOT PLAYER</li>
-          <li>CPU 250</li>
-          <li>RAM/DISK 80GB</li>
-          <li>WINDOWS / LINUX</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20paket%2020K" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-    </div>
+    </section>
 
     <section id="benefit">
-      <h3>⚙️ BENEFIT</h3>
-      <ul>
-        <li>DATABASE [ON]</li>
-        <li>PMA [ON]</li>
-        <li>PORT VOICE [ON]</li>
-        <li>PING STABIL [20-45]</li>
-        <li>ANTI DDOS PROTECTION</li>
-        <li>99.9% UPTIME GARANSI</li>
+      <h2>PREMIUM FEATURES</h2>
+      <ul style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin: 40px auto 0;">
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-database" style="color: var(--accent);"></i> MySQL Database Active
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-cogs" style="color: var(--accent);"></i> phpMyAdmin Enabled
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-microphone" style="color: var(--accent);"></i> Voice Chat Port Open
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-tachometer-alt" style="color: var(--accent);"></i> Stable Ping (20–45ms)
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Advanced DDoS Protection
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px; background: rgba(0, 30, 35, 0.4); padding: 12px 24px; border-radius: 14px; border: 1px solid var(--border-glow);">
+          <i class="fas fa-check-circle" style="color: var(--accent);"></i> 99.9% Uptime SLA
+        </li>
       </ul>
     </section>
 
     <section id="about">
-      <h3>🌐 Tentang DITZZ Network</h3>
-      <p>
-        Kami penyedia hosting SA:MP profesional yang fokus pada performa, stabilitas, dan keamanan.  
-        Dengan server berkecepatan tinggi, uptime 99.9%, dan dukungan teknis cepat,  
-        kami siap menjadi fondasi server impianmu. 🚀
+      <h2>ABOUT DITZZ NETWORK</h2>
+      <p style="max-width: 700px; margin: 0 auto; color: #b0b0b0; font-size: 1.1rem;">
+        Kami adalah penyedia hosting SA:MP profesional dengan infrastruktur kelas enterprise.  
+        Lebih dari 500+ server game di Indonesia mempercayakan performa & kestabilan kepada kami.  
+        Karena komunitas Anda layak mendapatkan yang terbaik. 💎
       </p>
     </section>
 
-    <section id="kontak">
-      <h3>📞 Hubungi Kami</h3>
-      <p><a href="https://wa.me/6285191923519" style="color:#00ffc6;text-decoration:none;font-weight:600;">+62 851-9192-3519 [DITZZ]</a></p>
+    <section id="kontak" style="margin-top: 60px;">
+      <h2>GET IN TOUCH</h2>
+      <p style="color: var(--accent); font-size: 1.2rem; margin-top: 20px;">
+        <a href="https://wa.me/6285191923519" style="color: var(--accent); text-decoration: none;" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> +62 851-9192-3519
+        </a>
+      </p>
     </section>
+
   </div>
 
   <footer>
-    © 2025 DITZZ Network Hosting — Semua Hak Dilindungi 💎
+    © 2025 DITZZ NETWORK • Premium SA:MP Hosting Infrastructure
   </footer>
 
-  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">💬</a>
-  <a href="#home" class="scroll-top" id="scrollTop">⬆</a>
+  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Preloader & Animasi -->
   <script>
-    // Loading screen
-    window.addEventListener('load',()=>{document.getElementById('loading').style.display='none';});
-    
-    // Intersection animation
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-    },{threshold:0.2});
-    document.querySelectorAll('.plan,section').forEach(el=>obs.observe(el));
-
-    // Particles background
-    particlesJS("particles-js",{
-      "particles":{"number":{"value":80},"color":{"value":"#00ffc6"},
-      "opacity":{"value":0.6},"size":{"value":3},
-      "line_linked":{"enable":true,"distance":150,"color":"#00ffc6","opacity":0.4,"width":1},
-      "move":{"enable":true,"speed":2}},
-      "interactivity":{"events":{"onhover":{"enable":true,"mode":"grab"}}},"retina_detect":true
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('preloader').style.display = 'none';
+        }, 600);
+      }, 1200);
     });
 
-    // Typing text
-    const text="Cepat ⚡ | Murah 💰 | Stabil 🔥 | Aman ☁️ | DITZZ NETWORK HOSTING";
-    let i=0;
-    function typingEffect(){
-      if(i<text.length){
-        document.getElementById("typing").textContent+=text.charAt(i);
-        i++;setTimeout(typingEffect,100);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.plan').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- ✨ CUSTOM PARTICLE BACKGROUND (VANILLA JS) -->
+  <script>
+    const config = {
+      particleCount: 80,
+      linkDistance: 120,
+      speed: 0.5,
+      color: '#00f3ff',
+      particleSize: 2,
+      backgroundColor: 'rgba(0, 0, 0, 0.2)'
+    };
+
+    const canvas = document.getElementById('particles-bg');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * config.speed;
+        this.vy = (Math.random() - 0.5) * config.speed;
+        this.radius = config.particleSize;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = config.color;
+        ctx.fill();
       }
     }
-    typingEffect();
 
-    // Scroll-top
-    const scrollTop=document.getElementById('scrollTop');
-    window.addEventListener('scroll',()=>{
-      if(window.scrollY>500)scrollTop.classList.add('show');
-      else scrollTop.classList.remove('show');
-    });
+    const particles = [];
+    for (let i = 0; i < config.particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.fillStyle = config.backgroundColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      ctx.beginPath();
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < config.linkDistance) {
+            const opacity = 1 - dist / config.linkDistance;
+            ctx.strokeStyle = `rgba(0, 243, 255, ${opacity * 0.3})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
+
 </body>
 </html>
