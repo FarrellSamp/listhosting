@@ -6,8 +6,8 @@ const app = express();
 const PORT = 3000;
 
 // 🔐 GANTI DENGAN API KEY ANDA
-const PTERODACTYL_API_KEY = 'your-application-api-key-here'; // Dari Admin → Application → API Credentials
-const PTERODACTYL_URL = 'https://your-panel.example.com'; // Tanpa slash di akhir
+const PTERODACTYL_API_KEY = 'ptla_jcE0KGJE6N4zZa7bcvZsQCrXjbu0TwBPCLZrBamX5uc'; // Dari Admin → Application → API Credentials
+const PTERODACTYL_URL = 'https://ditzzznetwork.xuyanzi.my.id'; // Tanpa slash di akhir
 
 app.use(express.static('public'));
 app.use(express.json());
