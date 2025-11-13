@@ -2,320 +2,295 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nerver Indo Roleplay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ditzzcloud — Cloud Hosting & VPS Services</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* Fonts & Reset */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Space+Grotesk:wght@600;700&display=swap');
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background: #03060a;
-      color: #fff;
+      font-family: 'Inter', sans-serif;
+      background: #0a0e17;
+      color: #e0e0ff;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* === Navbar === */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 5%;
-      background: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0, 255, 198, 0.2);
-    }
-    .logo { font-size: 1.8rem; color: #00ffc6; font-weight: bold; }
-    nav ul { display: flex; list-style: none; gap: 30px; }
-    nav ul a {
-      color: #ccc;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav ul a:hover { color: #00ffc6; }
-
-    /* === Hero Section === */
+    /* Header / Hero */
     header {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 0 20px;
-      color: white;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
       position: relative;
-    }
-    header h1 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      background: linear-gradient(to right, #00ffc6, #00bfa5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: #ccc;
-    }
-    .btn {
-      background: #00ffc6;
-      color: #000;
-      padding: 12px 30px;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    .btn:hover {
-      background: #00bfa5;
-      color: white;
-      transform: scale(1.05);
+      overflow: hidden;
     }
 
-    /* === Konten === */
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      background: linear-gradient(90deg, #00f7ff, #00c8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #a0a0d0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #00c8ff, #0088ff);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.7);
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(10, 14, 23, 0.8);
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      color: #00f7ff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #c0c0ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #00f7ff;
+    }
+
+    /* Services */
     .container {
       max-width: 1200px;
-      margin: 100px auto;
-      padding: 0 20px;
-    }
-    section {
-      margin: 80px 0;
-      text-align: center;
-    }
-    section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      color: #00ffc6;
-    }
-    section p {
-      color: #aaa;
-      line-height: 1.7;
-      max-width: 800px;
       margin: 0 auto;
+      padding: 80px 20px;
     }
 
-    /* === Fitur === */
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+    .section-title {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 60px;
+      color: #00f7ff;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
       margin-top: 30px;
     }
-    .feature {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(0, 255, 198, 0.2);
-      border-radius: 12px;
-      padding: 25px;
-      width: 250px;
+
+    .service-card {
+      background: rgba(20, 25, 40, 0.6);
+      border: 1px solid rgba(0, 247, 255, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 200, 255, 0.5);
+    }
+
+    .service-card i {
+      font-size: 2.5rem;
+      color: #00c8ff;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(5, 8, 15, 0.9);
+      border-top: 1px solid rgba(0, 200, 255, 0.2);
+      margin-top: 80px;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #00c8ff;
+      font-size: 1.5rem;
       transition: transform 0.3s;
     }
-    .feature:hover {
-      transform: translateY(-10px);
-    }
-    .feature i {
-      font-size: 2.5rem;
-      color: #00ffc6;
-      margin-bottom: 15px;
+
+    .social-links a:hover {
+      transform: scale(1.2);
     }
 
-    /* === Footer === */
-    footer {
-      background: rgba(0, 0, 0, 0.7);
-      text-align: center;
-      padding: 30px 10px;
-      border-top: 2px solid #00ffc6;
-      color: #aaa;
-    }
-
-    /* === WhatsApp & Scroll Top === */
-    .whatsapp-float, .scroll-top {
+    /* Scroll-to-top */
+    #scrollTop {
       position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 200, 255, 0.2);
+      color: #00f7ff;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
       text-decoration: none;
-      box-shadow: 0 0 25px #00ffc6;
-      transition: 0.3s;
-      z-index: 999;
-    }
-    .whatsapp-float {
-      bottom: 25px;
-      right: 25px;
-      background: #00ffc6;
-      color: #000;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      background: #00bfa5;
-      color: white;
-    }
-    .scroll-top {
-      bottom: 100px;
-      right: 25px;
-      background: rgba(0, 255, 198, 0.3);
-      color: #00ffc6;
-      display: none;
-    }
-    .scroll-top.show {
-      display: flex;
-    }
-    .scroll-top:hover {
-      background: #00ffc6;
-      color: #000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
     }
 
-    /* === Particles Background === */
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #03060a;
+    #scrollTop.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
-    /* Responsif */
+    /* Responsive */
     @media (max-width: 768px) {
-      header h1 { font-size: 2.5rem; }
-      nav ul { gap: 15px; font-size: 0.9rem; }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Particles Background -->
-  <div id="particles-js"></div>
-
-  <!-- Navbar -->
   <nav>
-    <div class="logo">🔥 Nerver Indo RP</div>
-    <ul>
-      <li><a href="#home">Beranda</a></li>
-      <li><a href="#fitur">Fitur</a></li>
-      <li><a href="#tentang">Tentang</a></li>
-      <li><a href="#kontak">Kontak</a></li>
+    <a href="#" class="logo">ditzzcloud</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Hero -->
   <header id="home">
-    <h1>Selamat Datang di Nerver Indo Roleplay</h1>
-    <p>Roleplay terbaik di Indonesia dengan sistem realistis, gameplay seru, dan komunitas aktif!</p>
-    <a href="https://wa.me/6285191923519?text=Halo,%20saya%20mau%20info%20Nerver%20Indo%20RP" class="btn" target="_blank">
-      Gabung Sekarang!
-    </a>
+    <div class="hero-content">
+      <h1>ditzzcloud</h1>
+      <p>Cloud hosting & VPS solutions built for developers, gamers, and creators.</p>
+      <a href="#services" class="btn">Explore Services</a>
+    </div>
   </header>
 
-  <!-- Fitur -->
   <div class="container">
-    <section id="fitur">
-      <h2>✨ Fitur Unggulan</h2>
-      <div class="features">
-        <div class="feature">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Anti-Cheat</h3>
-          <p>Sistem keamanan canggih untuk pengalaman fairplay.</p>
-        </div>
-        <div class="feature">
-          <i class="fas fa-sync-alt"></i>
-          <h3>Uptime 99.9%</h3>
-          <p>Server stabil tanpa lag atau downtime.</p>
-        </div>
-        <div class="feature">
-          <i class="fas fa-users"></i>
-          <h3>Komunitas Aktif</h3>
-          <p>Main bareng ratusan pemain setiap hari.</p>
-        </div>
+    <h2 class="section-title" id="services">Our Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <i class="fas fa-server"></i>
+        <h3>VPS Hosting</h3>
+        <p>High-performance virtual private servers with full root access, SSD storage, and DDoS protection.</p>
       </div>
-    </section>
-
-    <!-- Tentang -->
-    <section id="tentang">
-      <h2>🌍 Tentang Nerver Indo RP</h2>
-      <p>
-        Nerver Indo Roleplay adalah server SA:MP berbasis roleplay realistis yang dikembangkan untuk pemain Indonesia.  
-        Kami mengutamakan kualitas gameplay, keadilan, dan kekeluargaan dalam komunitas.
-      </p>
-    </section>
-
-    <!-- Kontak -->
-    <section id="kontak">
-      <h2>📞 Kontak Kami</h2>
-      <p>
-        Punya pertanyaan? Langsung chat kami via WhatsApp!
-      </p>
-      <br>
-      <a href="https://wa.me/6285191923519?text=Halo,%20saya%20mau%20info%20Nerver%20Indo%20RP" class="btn" target="_blank">
-        Hubungi Admin
-      </a>
-    </section>
+      <div class="service-card">
+        <i class="fas fa-gamepad"></i>
+        <h3>Game Server Hosting</h3>
+        <p>Optimized hosting for SA:MP, Minecraft, and more — low latency, high uptime.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-cogs"></i>
+        <h3>Custom Solutions</h3>
+        <p>Need something special? We offer tailored setups, panel installations (Pterodactyl), and more.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Nerver Indo Roleplay. All rights reserved.
+  <footer id="contact">
+    <p>© 2025 ditzzcloud — Empowering your digital journey.</p>
+    <div class="social-links">
+      <a href="https://wa.me/6285191923519" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/ditzz" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
+    <p>Contact: <a href="https://wa.me/6285191923519" style="color:#00c8ff; text-decoration: none;">+62 851-9192-3519</a></p>
   </footer>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <a href="#home" id="scrollTop" class="fas fa-arrow-up"></a>
 
-  <!-- Scroll Top -->
-  <a href="#" class="scroll-top" id="scroll-top">
-    <i class="fas fa-arrow-up"></i>
-  </a>
-
-  <!-- Particles.js CDN -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#00ffc6" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00bfa5",
-          opacity: 0.2,
-          width: 1
-        },
-        move: { enable: true, speed: 2 }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "repulse" } }
-      },
-      retina_detect: true
+    // Scroll-to-top button logic
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
     });
 
-    // Scroll Top Button
-    const scrollTopBtn = document.getElementById("scroll-top");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollTopBtn.classList.add("show");
-      } else {
-        scrollTopBtn.classList.remove("show");
-      }
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
   </script>
 </body>
