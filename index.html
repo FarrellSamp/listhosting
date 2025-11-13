@@ -5,49 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nerver Indo Roleplay</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <div class="hero">
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="overlay"></div>
     <header>
       <h1>NERVER INDO ROLEPLAY</h1>
-      <p>Where Stories Come Alive</p>
-    </header>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#rules">Rules</a>
-      <a href="#characters">Characters</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="cta">
-      <button>Join Now</button>
-    </div>
-  </div>
-
-  <main>
-    <section id="about" class="section">
-      <h2>Welcome to the Realm</h2>
-      <p>Dive into a world of mystery, drama, and intrigue. Nerver Indo Roleplay offers a premium, story-driven roleplaying experience unlike any other.</p>
-    </section>
-
-    <section id="features" class="section">
-      <h2>Premium Features</h2>
-      <div class="features-grid">
-        <div class="feature">Custom Storylines</div>
-        <div class="feature">24/7 Moderation</div>
-        <div class="feature">Voice Acting Events</div>
-        <div class="feature">Exclusive Lore Access</div>
+      <p>An Elite Roleplaying Experience</p>
+      <div class="countdown" id="countdown">
+        <span>Next Event in: </span>
+        <span id="timer">00d 00h 00m 00s</span>
       </div>
-    </section>
-  </main>
+      <div class="cta">
+        <a href="https://discord.gg/your-invite" target="_blank" class="btn-discord">
+          <i class="fab fa-discord"></i> Join Discord
+        </a>
+      </div>
+    </header>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 Nerver Indo Roleplay. All rights reserved.</p>
+  <!-- Navigation -->
+  <nav class="floating-nav">
+    <a href="#home">Home</a>
+    <a href="#lore">Lore</a>
+    <a href="#characters">Characters</a>
+    <a href="#rules">Rules</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Lore Section -->
+  <section id="lore" class="section fade-in">
+    <h2>📖 The Eternal Lore</h2>
+    <p>In the shadowed corners of this world, where reality bends and whispers echo through time, Nerver Indo stands as the last bastion of true roleplay. Every character has a story. Every choice, a consequence.</p>
+  </section>
+
+  <!-- Characters Gallery -->
+  <section id="characters" class="section fade-in">
+    <h2>🎭 Featured Characters</h2>
+    <div class="characters-grid">
+      <div class="character-card">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400" alt="Detective">
+        <h3>Adrian Cross</h3>
+        <p>The haunted detective who sees ghosts… and hunts them.</p>
+      </div>
+      <div class="character-card">
+        <img src="https://images.unsplash.com/photo-1596451430786-68e942a6d8e7?auto=format&fit=crop&w=400" alt="Heiress">
+        <h3>Valeria Montclair</h3>
+        <p>Heiress to a cursed empire. Beauty with a blade.</p>
+      </div>
+      <div class="character-card">
+        <img src="https://images.unsplash.com/photo-1604147706218-7c710f0e9c8e?auto=format&fit=crop&w=400" alt="Outlaw">
+        <h3>Rook “Viper” Kane</h3>
+        <p>Ex-military turned outlaw. Loyalty is his only code.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules -->
+  <section id="rules" class="section fade-in">
+    <h2>⚖️ Core Rules</h2>
+    <ul class="rules-list">
+      <li>Strict IC (In-Character) & OOC (Out-of-Character) separation</li>
+      <li>No powergaming or metagaming</li>
+      <li>Respect fellow players and staff</li>
+      <li>Active voice & lore participation required</li>
+    </ul>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="fade-in">
+    <p>For inquiries: <a href="mailto:admin@nerverindo.id">admin@nerverindo.id</a></p>
+    <p>&copy; 2025 Nerver Indo Roleplay. Crafted with shadows and ambition.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
