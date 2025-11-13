@@ -6,46 +6,49 @@
   <title>DitzzNetwork Official Store</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <style>
-    /* ===== ANIMASI PETIR ===== */
-    body::before {
-      content: "";
+    /* Background utama tetap putih bersih */
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #1a1a1a;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Elemen kilatan latar (flash putih singkat saat petir menyambar) */
+    .flash {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      background: white;
-    }
-
-    .lightning {
-      position: fixed;
-      top: 0;
-      width: 3px;
       background: white;
       opacity: 0;
-      z-index: -1;
-      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+      z-index: 9999;
     }
 
-    /* Petir kiri */
-    .lightning.left {
-      left: 15%;
-      height: 70vh;
-      transform-origin: top;
-      transform: scaleY(0);
-    }
-
-    /* Petir kanan */
-    .lightning.right {
-      right: 20%;
+    /* Elemen petir */
+    .lightning-bolt {
+      position: fixed;
+      top: 0;
       height: 60vh;
-      transform-origin: top;
+      width: 6px;
+      background: #00ff88; /* Hijau neon terang */
+      box-shadow: 
+        0 0 15px #00ff88,
+        0 0 30px #00ff88;
+      opacity: 0;
+      z-index: 9998;
       transform: scaleY(0);
+      transform-origin: top;
     }
 
-    @keyframes strike {
+    /* Animasi petir */
+    @keyframes lightningStrike {
       0% {
         transform: scaleY(0);
         opacity: 0;
@@ -59,38 +62,14 @@
       }
     }
 
-    /* ===== STYLING UTAMA ===== */
-    :root {
-      --white: #ffffff;
-      --off-white: #fafafa;
-      --light-gray: #f0f4f8;
-      --green: #00c853;
-      --green-light: #b9f6ca;
-      --green-dark: #007e33;
-      --text-dark: #1a1a1a;
-      --text-gray: #555;
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --border-radius: 16px;
-      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* Animasi kilatan latar */
+    @keyframes flash {
+      0% { opacity: 0; }
+      10% { opacity: 0.3; }
+      100% { opacity: 0; }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--off-white);
-      color: var(--text-dark);
-      min-height: 100vh;
-      padding: 2rem;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
-
+    /* Konten utama */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -98,17 +77,21 @@
       z-index: 10;
     }
 
+    :root {
+      --green: #00c853;
+      --green-dark: #007e33;
+      --text-gray: #555;
+    }
+
     header {
       text-align: center;
       margin-bottom: 3rem;
-      padding: 1.5rem 0;
     }
 
     h1 {
       font-size: 2.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      color: var(--green-dark);
       background: linear-gradient(to right, var(--green), var(--green-dark));
       -webkit-background-clip: text;
       background-clip: text;
@@ -118,7 +101,6 @@
     .subtitle {
       font-size: 1.1rem;
       color: var(--text-gray);
-      margin-top: 0.5rem;
     }
 
     .services, .hosting-plans {
@@ -129,18 +111,17 @@
     }
 
     .card {
-      background: var(--card-bg);
-      border: 1px solid rgba(0, 200, 83, 0.25);
-      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 200, 83, 0.2);
+      border-radius: 16px;
       padding: 1.8rem;
-      transition: var(--transition);
-      position: relative;
-      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.12);
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.1);
+      transition: all 0.4s ease;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.22);
+      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
       border-color: var(--green);
     }
 
@@ -162,17 +143,6 @@
       font-size: 0.95rem;
     }
 
-    .features {
-      list-style: none;
-      margin-top: 1rem;
-    }
-
-    .features li {
-      margin-bottom: 0.7rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-
     .section-title {
       font-size: 1.9rem;
       margin: 2.5rem 0 1.5rem;
@@ -192,11 +162,6 @@
       border-radius: 2px;
     }
 
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
     .btn {
       display: inline-block;
       background: var(--green);
@@ -206,47 +171,30 @@
       border-radius: 30px;
       text-decoration: none;
       font-size: 1.1rem;
-      transition: var(--transition);
-      border: none;
-      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
     }
 
     .btn:hover {
       background: var(--green-dark);
       transform: scale(1.04);
-      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
     }
 
     footer {
       text-align: center;
       margin-top: 4rem;
       color: var(--text-gray);
-      font-size: 0.95rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    footer a {
-      color: var(--green);
-      text-decoration: none;
-      font-weight: 600;
+      border-top: 1px solid #eee;
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-      h1 {
-        font-size: 2.2rem;
-      }
-      .card {
-        padding: 1.4rem;
-      }
+      body { padding: 1rem; }
+      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Petir akan dibuat via JavaScript -->
+  <!-- Konten Utama -->
   <div class="container">
     <header>
       <h1>DitzzNetwork Official Store</h1>
@@ -255,63 +203,22 @@
 
     <h2 class="section-title">Jasa Instalasi</h2>
     <div class="services">
-      <div class="card">
-        <h3>Install Panel Pterodactyl + Node</h3>
-        <p>Harga: <strong>Rp15.000</strong></p>
-      </div>
-      <div class="card">
-        <h3>Install Database + phpMyAdmin</h3>
-        <p>Harga: <strong>Rp8.000</strong></p>
-      </div>
-      <div class="card">
-        <h3>Sell Subdomain Web + Node</h3>
-        <p>Harga: <strong>Rp5.000</strong></p>
-      </div>
+      <div class="card"><h3>Install Panel Pterodactyl + Node</h3><p>Harga: <strong>Rp15.000</strong></p></div>
+      <div class="card"><h3>Install Database + phpMyAdmin</h3><p>Harga: <strong>Rp8.000</strong></p></div>
+      <div class="card"><h3>Sell Subdomain Web + Node</h3><p>Harga: <strong>Rp5.000</strong></p></div>
     </div>
 
     <h2 class="section-title">Hosting Premium</h2>
     <div class="hosting-plans">
-      <div class="card">
-        <span class="price-tag">Rp5K</span>
-        <h3>50 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 100</li>
-          <li>RAM/Disk: 10GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp10K</span>
-        <h3>150 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 150</li>
-          <li>RAM/Disk: 25GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp15K</span>
-        <h3>200 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 200</li>
-          <li>RAM/Disk: 25GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp20K</span>
-        <h3>250 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 250</li>
-          <li>RAM/Disk: 80GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
+      <div class="card"><span class="price-tag">Rp5K</span><h3>50 Slot Player</h3><ul><li>CPU: 100</li><li>RAM/Disk: 10GB</li><li>OS: Windows / Linux</li></ul></div>
+      <div class="card"><span class="price-tag">Rp10K</span><h3>150 Slot Player</h3><ul><li>CPU: 150</li><li>RAM/Disk: 25GB</li><li>OS: Windows / Linux</li></ul></div>
+      <div class="card"><span class="price-tag">Rp15K</span><h3>200 Slot Player</h3><ul><li>CPU: 200</li><li>RAM/Disk: 25GB</li><li>OS: Windows / Linux</li></ul></div>
+      <div class="card"><span class="price-tag">Rp20K</span><h3>250 Slot Player</h3><ul><li>CPU: 250</li><li>RAM/Disk: 80GB</li><li>OS: Windows / Linux</li></ul></div>
     </div>
 
     <h2 class="section-title">Benefit</h2>
     <div class="card" style="max-width: 700px; margin: 0 auto;">
-      <ul class="features">
+      <ul>
         <li>PMA: ON</li>
         <li>Database: ON</li>
         <li>Port Voice: ON</li>
@@ -319,51 +226,55 @@
       </ul>
     </div>
 
-    <div class="cta">
+    <div style="text-align:center; margin-top:2rem;">
       <a href="https://wa.me/6285191923519" target="_blank" class="btn">Hubungi Admin Sekarang</a>
-      <p style="margin-top: 1rem; color: var(--text-gray);">
-        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank">Lihat Testimoni di WhatsApp Channel</a>
+      <p style="margin-top:1rem; color:#555;">
+        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00c853;">Lihat Testimoni di WhatsApp Channel</a>
       </p>
     </div>
 
     <footer>
-      <p>© 2025 DitzzNetwork. All rights reserved. Admin: <a href="https://wa.me/6285191923519">+62 851-9192-3519 (DITZZ)</a></p>
+      <p>© 2025 DitzzNetwork. Admin: +62 851-9192-3519 (DITZZ)</p>
     </footer>
   </div>
 
+  <!-- SCRIPT ANIMASI PETIR -->
   <script>
-    // Fungsi untuk membuat petir menyambar secara acak
     function createLightning() {
-      const side = Math.random() > 0.5 ? 'left' : 'right';
-      const lightning = document.createElement('div');
-      lightning.classList.add('lightning', side);
-      
-      // Durasi acak (sangat cepat: 200–400ms)
-      const duration = 200 + Math.random() * 200;
-      lightning.style.animation = `strike ${duration}ms forwards`;
-      
-      document.body.appendChild(lightning);
-      
-      // Hapus elemen setelah animasi selesai
+      // Pilih sisi: kiri (20%) atau kanan (80%)
+      const side = Math.random() > 0.5 ? 20 : 80;
+      const bolt = document.createElement('div');
+      bolt.className = 'lightning-bolt';
+      bolt.style.left = `${side}%`;
+
+      // Durasi animasi: 300–500ms
+      const duration = 300 + Math.random() * 200;
+      bolt.style.animation = `lightningStrike ${duration}ms forwards`;
+
+      document.body.appendChild(bolt);
+
+      // Tambahkan efek kilatan latar
+      const flash = document.createElement('div');
+      flash.className = 'flash';
+      flash.style.animation = `flash ${duration}ms forwards`;
+      document.body.appendChild(flash);
+
+      // Hapus elemen setelah animasi
       setTimeout(() => {
-        lightning.remove();
+        bolt.remove();
+        flash.remove();
       }, duration);
     }
 
-    // Sambar petir setiap 3–8 detik secara acak
-    function scheduleLightning() {
-      const delay = 3000 + Math.random() * 5000;
-      setTimeout(() => {
-        createLightning();
-        scheduleLightning();
-      }, delay);
-    }
-
-    // Mulai animasi petir
-    scheduleLightning();
-
-    // Tambahkan satu sambaran awal setelah 1 detik
+    // Menyambar pertama kali setelah 1 detik
     setTimeout(createLightning, 1000);
+
+    // Lalu setiap 4–9 detik
+    setInterval(() => {
+      if (Math.random() > 0.3) { // 70% chance menyambar
+        createLightning();
+      }
+    }, 4000 + Math.random() * 5000);
   </script>
 </body>
 </html>
