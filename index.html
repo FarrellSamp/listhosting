@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☁️ DitzzCloud — VPS & Hosting Cloud Murah</title>
-  <meta name="description" content="DitzzCloud menyediakan layanan VPS berkualitas tinggi dengan harga terjangkau, support Pterodactyl, SA:MP, dan server game lainnya.">
+  <title>DitzzCloud — Hosting Pterodactyl Mulai Rp5K</title>
+  <meta name="description" content="DitzzCloud menyediakan layanan hosting Pterodactyl termurah di Indonesia mulai dari Rp5.000! SSD Cepat, Lokasi Jakarta, Support Game Server SA:MP, FiveM, Minecraft, dan Discord Bot.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@600;700&display=swap');
     *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
@@ -14,142 +14,135 @@
       color:white;
       overflow-x:hidden;
     }
-
-    /* Loading */
     #loading{
       position:fixed;top:0;left:0;width:100%;height:100%;
       background:#02060c;display:flex;flex-direction:column;
       align-items:center;justify-content:center;z-index:9999;
     }
     .loader{
-      width:70px;height:70px;border-radius:50%;
-      border:6px solid rgba(255,255,255,0.1);
-      border-top:6px solid #00e5ff;
+      width:60px;height:60px;border-radius:50%;
+      border:5px solid rgba(255,255,255,0.1);
+      border-top:5px solid #00e5ff;
       animation:spin 1s linear infinite;
     }
     @keyframes spin{to{transform:rotate(360deg)}}
     #loading p{margin-top:15px;color:#00e5ff;font-weight:600;}
 
-    /* Navbar */
     nav{
       position:fixed;top:0;width:100%;display:flex;
       justify-content:space-between;align-items:center;
-      background:rgba(0,0,0,0.7);backdrop-filter:blur(15px);
+      background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);
       padding:15px 40px;z-index:1000;
       border-bottom:1px solid rgba(0,229,255,0.4);
     }
     nav .logo{
       font-family:'Orbitron',sans-serif;font-size:1.5rem;color:#00e5ff;
-      text-shadow:0 0 15px #00e5ff;cursor:pointer;
+      text-shadow:0 0 10px #00e5ff;
     }
     nav ul{display:flex;gap:25px;list-style:none;}
     nav ul li a{
-      color:white;text-decoration:none;font-weight:600;transition:.3s;
+      color:white;text-decoration:none;font-weight:600;
+      transition:.3s;
     }
-    nav ul li a:hover{color:#00e5ff;text-shadow:0 0 10px #00e5ff;}
+    nav ul li a:hover{color:#00e5ff;text-shadow:0 0 8px #00e5ff;}
 
-    /* Hero */
     header{
       height:100vh;display:flex;flex-direction:column;
       justify-content:center;align-items:center;text-align:center;
-      padding:0 20px;position:relative;overflow:hidden;
+      padding:0 20px;position:relative;
     }
     header h1{
       font-family:'Orbitron',sans-serif;
-      color:#00e5ff;font-size:2.8rem;
-      text-shadow:0 0 25px #00e5ff;
+      color:#00e5ff;font-size:2.6rem;
+      margin-bottom:15px;
       animation:glow 2s infinite alternate;
     }
     @keyframes glow{
       from{text-shadow:0 0 10px #00e5ff;}
-      to{text-shadow:0 0 30px #00b2cc;}
+      to{text-shadow:0 0 25px #00b2cc;}
     }
-    header p{margin-top:15px;color:#ccc;font-size:1.1rem;}
-    .typing{
-      color:#00e5ff;font-family:'Orbitron',sans-serif;
-      font-size:1.3rem;margin-top:10px;
-    }
+    header p{color:#ccc;font-size:1.1rem;}
+    .typing{color:#00e5ff;font-family:'Orbitron',sans-serif;margin-top:12px;}
 
-    /* Container */
     .container{
       max-width:1100px;margin:100px auto;padding:20px;
     }
 
-    /* VPS Plans */
     .plans{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:25px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;margin-top:40px;
     }
     .plan{
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(0,229,255,0.3);
-      border-radius:15px;
-      padding:25px;text-align:center;
-      backdrop-filter:blur(10px);
-      transition:all .4s ease;
-      opacity:0;transform:translateY(60px);
+      border-radius:15px;padding:25px;text-align:center;
+      backdrop-filter:blur(10px);opacity:0;transform:translateY(40px);
+      transition:all .5s ease;
     }
     .plan.visible{opacity:1;transform:translateY(0);}
-    .plan:hover{
-      transform:translateY(-10px) scale(1.05);
-      box-shadow:0 0 25px rgba(0,229,255,0.5);
+    .plan h2{
+      color:#00e5ff;margin-bottom:15px;font-size:1.4rem;
     }
-    .plan h2{color:#00e5ff;margin-bottom:15px;}
-    .plan ul{list-style:none;text-align:left;margin-bottom:20px;}
-    .plan li{margin:6px 0;padding-left:10px;border-left:2px solid #00e5ff;}
+    .price{
+      font-size:1.5rem;font-weight:700;color:#00e5ff;
+      margin:10px 0;
+    }
+    .plan ul{
+      list-style:none;text-align:left;margin:15px 0;
+    }
+    .plan li{
+      margin:6px 0;padding-left:10px;
+      border-left:2px solid #00e5ff;
+      font-size:0.95rem;
+    }
     .btn{
-      background:#00e5ff;color:#000;font-weight:700;
-      padding:10px 22px;border-radius:30px;text-decoration:none;
-      transition:.3s;box-shadow:0 0 20px #00e5ff;
+      display:inline-block;background:#00e5ff;color:#000;
+      padding:10px 24px;border-radius:30px;text-decoration:none;
+      font-weight:700;margin-top:15px;transition:.3s;
+      box-shadow:0 0 15px rgba(0,229,255,0.5);
     }
-    .btn:hover{background:#00b2cc;color:white;}
+    .btn:hover{
+      background:#00b2cc;color:white;
+      transform:scale(1.05);
+    }
 
-    /* Section */
     section{
-      text-align:center;margin-top:80px;
-      opacity:0;transform:translateY(50px);
+      text-align:center;margin-top:70px;
+      opacity:0;transform:translateY(40px);
       transition:all 0.6s ease;
     }
     section.visible{opacity:1;transform:translateY(0);}
     section h3{
-      color:#00e5ff;font-size:1.7rem;margin-bottom:15px;
-      text-shadow:0 0 15px #00e5ff;
+      color:#00e5ff;font-size:1.7rem;margin-bottom:20px;
     }
     section ul{
       list-style:none;display:inline-block;text-align:left;
       line-height:1.8;
     }
 
-    /* Footer */
     footer{
       background:rgba(0,0,0,0.6);
       text-align:center;padding:30px 10px;
       border-top:2px solid #00e5ff;
-      color:#aaa;
+      color:#aaa;margin-top:80px;
     }
 
-    /* Floating Chat + ScrollTop */
-    .whatsapp-float,.scroll-top{
-      position:fixed;border-radius:50%;width:60px;height:60px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:26px;text-decoration:none;box-shadow:0 0 25px #00e5ff;
-      transition:.3s;z-index:999;
-    }
     .whatsapp-float{
-      bottom:25px;right:25px;background:#00e5ff;color:#000;
+      position:fixed;bottom:25px;right:25px;
+      width:60px;height:60px;background:#00e5ff;
+      color:#000;border-radius:50%;display:flex;
+      align-items:center;justify-content:center;
+      font-size:24px;text-decoration:none;
+      box-shadow:0 0 20px #00e5ff;z-index:999;
+      transition:.3s;
     }
-    .whatsapp-float:hover{transform:scale(1.1);background:#00b2cc;color:white;}
-    .scroll-top{
-      bottom:100px;right:25px;background:rgba(0,229,255,0.3);
-      color:#00e5ff;display:none;
+    .whatsapp-float:hover{
+      transform:scale(1.1);background:#00b2cc;color:white;
     }
-    .scroll-top.show{display:flex;}
-    .scroll-top:hover{background:#00e5ff;color:#000;}
 
-    /* Particles background */
     #particles-js{
       position:fixed;top:0;left:0;width:100%;height:100%;
-      z-index:-1;background:#02060c;
+      z-index:-1;
     }
   </style>
 </head>
@@ -165,84 +158,83 @@
     <div class="logo">☁️ DitzzCloud</div>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#vps">VPS</a></li>
-      <li><a href="#benefit">Fitur</a></li>
-      <li><a href="#about">Tentang</a></li>
+      <li><a href="#plans">Paket</a></li>
+      <li><a href="#fitur">Fitur</a></li>
       <li><a href="#kontak">Kontak</a></li>
     </ul>
   </nav>
 
   <header id="home">
-    <h1>VPS Cloud Cepat & Stabil</h1>
-    <p>Untuk Game Server, Web Hosting, dan Development — 99.9% Uptime Garansi ⚡</p>
+    <h1>.Hosting Pterodactyl Termurah</h1>
+    <p>Mulai dari <strong>Rp5.000/bulan</strong> — Lokasi Indonesia, SSD Cepat, Auto-Install Game!</p>
     <div class="typing" id="typing"></div>
   </header>
 
   <div class="container">
-    <div class="plans" id="vps">
+    <div class="plans" id="plans">
       <div class="plan">
-        <h2>☁️ Starter — Rp15K</h2>
+        <h2>🎮 Starter</h2>
+        <div class="price">Rp5.000</div>
+        <p>/bulan</p>
         <ul>
-          <li>1 vCPU Core</li>
+          <li>0.5 vCPU</li>
+          <li>512 MB RAM</li>
+          <li>5 GB SSD</li>
+          <li>Unmetered Bandwidth</li>
+          <li>Auto Install SA:MP</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Starter" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="plan">
+        <h2>🚀 Basic</h2>
+        <div class="price">Rp9.000</div>
+        <p>/bulan</p>
+        <ul>
+          <li>1 vCPU</li>
+          <li>1 GB RAM</li>
+          <li>10 GB SSD NVMe</li>
+          <li>DDoS Protection</li>
+          <li>Support Minecraft / FiveM</li>
+          <li>Backup Mingguan</li>
+        </ul>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Basic" class="btn" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="plan">
+        <h2>💎 Pro</h2>
+        <div class="price">Rp15.000</div>
+        <p>/bulan</p>
+        <ul>
+          <li>1.5 vCPU</li>
           <li>2 GB RAM</li>
-          <li>30 GB SSD NVMe</li>
-          <li>Unmetered Bandwidth</li>
-          <li>Linux / Windows</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20VPS%20Starter" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-
-      <div class="plan">
-        <h2>🔥 Pro — Rp35K</h2>
-        <ul>
-          <li>2 vCPU Core</li>
-          <li>4 GB RAM</li>
-          <li>60 GB SSD NVMe</li>
-          <li>Unmetered Bandwidth</li>
-          <li>Pterodactyl Panel</li>
-          <li>Free Backup</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20VPS%20Pro" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-
-      <div class="plan">
-        <h2>💎 Enterprise — Rp75K</h2>
-        <ul>
-          <li>4 vCPU Core</li>
-          <li>8 GB RAM</li>
-          <li>120 GB SSD NVMe</li>
-          <li>Unmetered Bandwidth</li>
-          <li>Dedicated IP + DDoS Protect</li>
+          <li>20 GB NVMe</li>
+          <li>IPv4 Dedicated</li>
           <li>Full Root Access</li>
+          <li>99.9% Uptime</li>
+          <li>Support Discord Bot</li>
         </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20VPS%20Enterprise" class="btn" target="_blank">Pesan Sekarang</a>
+        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Pro" class="btn" target="_blank">Pesan Sekarang</a>
       </div>
     </div>
 
-    <section id="benefit">
-      <h3>✨ Fitur Unggulan</h3>
+    <section id="fitur">
+      <h3>✨ Fitur Unggulan DitzzCloud</h3>
       <ul>
-        <li>✅ SSD NVMe Storage — Super Cepat</li>
-        <li>✅ Lokasi Server Indonesia — Latensi Rendah</li>
-        <li>✅ Anti-DDoS Protection</li>
-        <li>✅ Full Root / Admin Access</li>
-        <li>✅ Support Pterodactyl, Docker, SA:MP, dll</li>
-        <li>✅ Garansi Uptime 99.9%</li>
+        <li>📍 Lokasi Server: Jakarta (Latensi Rendah)</li>
+        <li>⚡ SSD NVMe — Load Cepat</li>
+        <li>🛡️ DDoS Protection Dasar</li>
+        <li>🎮 Auto-Installer: SA:MP, FiveM, Minecraft, TS3</li>
+        <li>📱 Support via WhatsApp 24/7</li>
+        <li>🔄 Backup Otomatis (Paket Basic+)</li>
       </ul>
     </section>
 
-    <section id="about">
-      <h3>💡 Tentang DitzzCloud</h3>
-      <p>
-        DitzzCloud adalah penyedia layanan cloud berbasis di Indonesia, fokus pada kecepatan, kestabilan, dan dukungan teknis cepat.  
-        Kami melayani developer, server owner, dan bisnis kecil hingga menengah yang butuh infrastruktur handal tanpa ribet.
-      </p>
-    </section>
-
     <section id="kontak">
-      <h3>📞 Butuh Bantuan?</h3>
+      <h3>💬 Butuh Bantuan?</h3>
       <p>
-        <a href="https://wa.me/6285191923519" style="color:#00e5ff;text-decoration:none;font-weight:600;">
+        Hubungi kami via WhatsApp:  
+        <a href="https://wa.me/6285191923519" style="color:#00e5ff;font-weight:600;text-decoration:none;">
           +62 851-9192-3519 (Ditzz)
         </a>
       </p>
@@ -250,11 +242,10 @@
   </div>
 
   <footer>
-    © 2025 DitzzCloud — Powering Your Digital Future 💻
+    © 2025 DitzzCloud — Hosting Pterodactyl Termurah di Indonesia
   </footer>
 
   <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">💬</a>
-  <a href="#home" class="scroll-top" id="scrollTop">⬆</a>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
@@ -266,23 +257,23 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
     document.querySelectorAll('.plan, section').forEach(el => observer.observe(el));
 
     particlesJS("particles-js", {
       "particles": {
-        "number": { "value": 80 },
+        "number": { "value": 60 },
         "color": { "value": "#00e5ff" },
-        "opacity": { "value": 0.6 },
-        "size": { "value": 3 },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 2.5 },
         "line_linked": {
           "enable": true,
           "distance": 150,
           "color": "#00e5ff",
-          "opacity": 0.4,
+          "opacity": 0.3,
           "width": 1
         },
-        "move": { "enable": true, "speed": 2 }
+        "move": { "enable": true, "speed": 1.5 }
       },
       "interactivity": {
         "events": { "onhover": { "enable": true, "mode": "grab" } }
@@ -290,22 +281,16 @@
       "retina_detect": true
     });
 
-    const text = "VPS Murah ⚡ | SSD Cepat 💾 | Support Pterodactyl 🎮 | DitzzCloud";
+    const text = "SSD Cepat ⚡ | Lokasi ID 🇮🇩 | Mulai Rp5K 💸 | DitzzCloud";
     let i = 0;
-    function typeText() {
+    function type() {
       if (i < text.length) {
         document.getElementById("typing").textContent += text.charAt(i);
         i++;
-        setTimeout(typeText, 100);
+        setTimeout(type, 120);
       }
     }
-    typeText();
-
-    window.addEventListener('scroll', () => {
-      const topBtn = document.getElementById('scrollTop');
-      if (window.scrollY > 500) topBtn.classList.add('show');
-      else topBtn.classList.remove('show');
-    });
+    type();
   </script>
 </body>
 </html>
