@@ -6,7 +6,6 @@
   <title>DitzzNetwork Official Store</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <style>
-    /* Background utama tetap putih bersih */
     body {
       margin: 0;
       padding: 2rem;
@@ -18,7 +17,25 @@
       overflow-x: hidden;
     }
 
-    /* Elemen kilatan latar (flash putih singkat saat petir menyambar) */
+    .lightning-bolt {
+      position: fixed;
+      top: 0;
+      height: 60vh;
+      width: 6px;
+      background: #00ff88;
+      box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
+      opacity: 0;
+      z-index: 9998;
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+
+    @keyframes lightningStrike {
+      0% { transform: scaleY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
     .flash {
       position: fixed;
       top: 0;
@@ -28,59 +45,20 @@
       background: white;
       opacity: 0;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9997;
     }
 
-    /* Elemen petir */
-    .lightning-bolt {
-      position: fixed;
-      top: 0;
-      height: 60vh;
-      width: 6px;
-      background: #00ff88; /* Hijau neon terang */
-      box-shadow: 
-        0 0 15px #00ff88,
-        0 0 30px #00ff88;
-      opacity: 0;
-      z-index: 9998;
-      transform: scaleY(0);
-      transform-origin: top;
-    }
-
-    /* Animasi petir */
-    @keyframes lightningStrike {
-      0% {
-        transform: scaleY(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: scaleY(1);
-        opacity: 0;
-      }
-    }
-
-    /* Animasi kilatan latar */
     @keyframes flash {
       0% { opacity: 0; }
-      10% { opacity: 0.3; }
+      10% { opacity: 0.25; }
       100% { opacity: 0; }
     }
 
-    /* Konten utama */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 10;
-    }
-
-    :root {
-      --green: #00c853;
-      --green-dark: #007e33;
-      --text-gray: #555;
     }
 
     header {
@@ -92,7 +70,7 @@
       font-size: 2.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      background: linear-gradient(to right, var(--green), var(--green-dark));
+      background: linear-gradient(to right, #00c853, #007e33);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -100,7 +78,7 @@
 
     .subtitle {
       font-size: 1.1rem;
-      color: var(--text-gray);
+      color: #555;
     }
 
     .services, .hosting-plans {
@@ -111,7 +89,8 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.95);
+      position: relative; /* ✅ PENTING: agar price-tag bisa diposisikan */
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid rgba(0, 200, 83, 0.2);
       border-radius: 16px;
       padding: 1.8rem;
@@ -122,31 +101,42 @@
     .card:hover {
       transform: translateY(-6px);
       box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
-      border-color: var(--green);
+      border-color: #00c853;
     }
 
     .card h3 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: var(--green-dark);
+      color: #007e33;
     }
 
     .price-tag {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--green);
+      top: 16px;
+      right: 16px;
+      background: #00c853;
       color: white;
       font-weight: 700;
       padding: 0.35rem 0.8rem;
       border-radius: 20px;
       font-size: 0.95rem;
+      z-index: 5;
+    }
+
+    .features {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .features li {
+      margin-bottom: 0.7rem;
+      font-weight: 500;
     }
 
     .section-title {
       font-size: 1.9rem;
       margin: 2.5rem 0 1.5rem;
-      color: var(--green-dark);
+      color: #007e33;
       position: relative;
       display: inline-block;
     }
@@ -158,13 +148,13 @@
       left: 0;
       width: 50px;
       height: 3px;
-      background: var(--green);
+      background: #00c853;
       border-radius: 2px;
     }
 
     .btn {
       display: inline-block;
-      background: var(--green);
+      background: #00c853;
       color: white;
       font-weight: 700;
       padding: 0.9rem 2.2rem;
@@ -175,26 +165,26 @@
     }
 
     .btn:hover {
-      background: var(--green-dark);
+      background: #007e33;
       transform: scale(1.04);
     }
 
     footer {
       text-align: center;
       margin-top: 4rem;
-      color: var(--text-gray);
+      color: #555;
       padding-top: 2rem;
       border-top: 1px solid #eee;
     }
 
     @media (max-width: 768px) {
       body { padding: 1rem; }
-      h1 { font-size: 2.2rem; }
+      .card { padding: 1.4rem; }
+      .price-tag { top: 12px; right: 12px; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Konten Utama -->
   <div class="container">
     <header>
       <h1>DitzzNetwork Official Store</h1>
@@ -203,22 +193,67 @@
 
     <h2 class="section-title">Jasa Instalasi</h2>
     <div class="services">
-      <div class="card"><h3>Install Panel Pterodactyl + Node</h3><p>Harga: <strong>Rp15.000</strong></p></div>
-      <div class="card"><h3>Install Database + phpMyAdmin</h3><p>Harga: <strong>Rp8.000</strong></p></div>
-      <div class="card"><h3>Sell Subdomain Web + Node</h3><p>Harga: <strong>Rp5.000</strong></p></div>
+      <div class="card">
+        <h3>Install Panel Pterodactyl + Node</h3>
+        <p>Harga: <strong>Rp15.000</strong></p>
+      </div>
+      <div class="card">
+        <h3>Install Database + phpMyAdmin</h3>
+        <p>Harga: <strong>Rp8.000</strong></p>
+      </div>
+      <div class="card">
+        <h3>Sell Subdomain Web + Node</h3>
+        <p>Harga: <strong>Rp5.000</strong></p>
+      </div>
     </div>
 
     <h2 class="section-title">Hosting Premium</h2>
     <div class="hosting-plans">
-      <div class="card"><span class="price-tag">Rp5K</span><h3>50 Slot Player</h3><ul><li>CPU: 100</li><li>RAM/Disk: 10GB</li><li>OS: Windows / Linux</li></ul></div>
-      <div class="card"><span class="price-tag">Rp10K</span><h3>150 Slot Player</h3><ul><li>CPU: 150</li><li>RAM/Disk: 25GB</li><li>OS: Windows / Linux</li></ul></div>
-      <div class="card"><span class="price-tag">Rp15K</span><h3>200 Slot Player</h3><ul><li>CPU: 200</li><li>RAM/Disk: 25GB</li><li>OS: Windows / Linux</li></ul></div>
-      <div class="card"><span class="price-tag">Rp20K</span><h3>250 Slot Player</h3><ul><li>CPU: 250</li><li>RAM/Disk: 80GB</li><li>OS: Windows / Linux</li></ul></div>
+      <!-- Card 1 -->
+      <div class="card">
+        <span class="price-tag">Rp5K</span>
+        <h3>50 Slot Player</h3>
+        <ul class="features">
+          <li>CPU: 100</li>
+          <li>RAM/Disk: 10GB</li>
+          <li>OS: Windows / Linux</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <span class="price-tag">Rp10K</span>
+        <h3>150 Slot Player</h3>
+        <ul class="features">
+          <li>CPU: 150</li>
+          <li>RAM/Disk: 25GB</li>
+          <li>OS: Windows / Linux</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <span class="price-tag">Rp15K</span>
+        <h3>200 Slot Player</h3>
+        <ul class="features">
+          <li>CPU: 200</li>
+          <li>RAM/Disk: 25GB</li>
+          <li>OS: Windows / Linux</li>
+        </ul>
+      </div>
+      <!-- Card 4 -->
+      <div class="card">
+        <span class="price-tag">Rp20K</span>
+        <h3>250 Slot Player</h3>
+        <ul class="features">
+          <li>CPU: 250</li>
+          <li>RAM/Disk: 80GB</li>
+          <li>OS: Windows / Linux</li>
+        </ul>
+      </div>
     </div>
 
     <h2 class="section-title">Benefit</h2>
     <div class="card" style="max-width: 700px; margin: 0 auto;">
-      <ul>
+      <ul class="features">
         <li>PMA: ON</li>
         <li>Database: ON</li>
         <li>Port Voice: ON</li>
@@ -229,52 +264,40 @@
     <div style="text-align:center; margin-top:2rem;">
       <a href="https://wa.me/6285191923519" target="_blank" class="btn">Hubungi Admin Sekarang</a>
       <p style="margin-top:1rem; color:#555;">
-        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00c853;">Lihat Testimoni di WhatsApp Channel</a>
+        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00c853; text-decoration: none;">Lihat Testimoni di WhatsApp Channel</a>
       </p>
     </div>
 
     <footer>
-      <p>© 2025 DitzzNetwork. Admin: +62 851-9192-3519 (DITZZ)</p>
+      <p>© 2025 DitzzNetwork. Admin: <a href="https://wa.me/6285191923519" style="color:#00c853; text-decoration: none;">+62 851-9192-3519 (DITZZ)</a></p>
     </footer>
   </div>
 
-  <!-- SCRIPT ANIMASI PETIR -->
   <script>
     function createLightning() {
-      // Pilih sisi: kiri (20%) atau kanan (80%)
       const side = Math.random() > 0.5 ? 20 : 80;
       const bolt = document.createElement('div');
       bolt.className = 'lightning-bolt';
       bolt.style.left = `${side}%`;
-
-      // Durasi animasi: 300–500ms
-      const duration = 300 + Math.random() * 200;
+      const duration = 350 + Math.random() * 150;
       bolt.style.animation = `lightningStrike ${duration}ms forwards`;
-
       document.body.appendChild(bolt);
 
-      // Tambahkan efek kilatan latar
       const flash = document.createElement('div');
       flash.className = 'flash';
       flash.style.animation = `flash ${duration}ms forwards`;
       document.body.appendChild(flash);
 
-      // Hapus elemen setelah animasi
       setTimeout(() => {
-        bolt.remove();
-        flash.remove();
+        bolt?.remove();
+        flash?.remove();
       }, duration);
     }
 
-    // Menyambar pertama kali setelah 1 detik
-    setTimeout(createLightning, 1000);
-
-    // Lalu setiap 4–9 detik
+    setTimeout(createLightning, 1200);
     setInterval(() => {
-      if (Math.random() > 0.3) { // 70% chance menyambar
-        createLightning();
-      }
-    }, 4000 + Math.random() * 5000);
+      if (Math.random() > 0.4) createLightning();
+    }, 5000 + Math.random() * 4000);
   </script>
 </body>
 </html>
