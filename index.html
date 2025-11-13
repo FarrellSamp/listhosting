@@ -6,17 +6,47 @@
   <title>DitzzNetwork Official Store</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <style>
+    /* ===== VIDEO BACKGROUND ===== */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    /* Overlay gelap agar teks tetap terbaca */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 10, 5, 0.65); /* Hijau gelap transparan */
+      z-index: -2;
+    }
+
+    /* Konten utama */
     body {
       margin: 0;
       padding: 2rem;
       font-family: 'Inter', sans-serif;
-      background-color: #fafafa;
-      color: #1a1a1a;
+      color: white;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
     }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Petir tetap di atas video, di bawah konten */
     .lightning-bolt {
       position: fixed;
       top: 0;
@@ -25,7 +55,7 @@
       background: #00ff88;
       box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
       opacity: 0;
-      z-index: 9998;
+      z-index: -1; /* Di atas video, di bawah overlay */
       transform: scaleY(0);
       transform-origin: top;
     }
@@ -36,29 +66,45 @@
       100% { transform: scaleY(1); opacity: 0; }
     }
 
-    .flash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 9997;
-    }
-
-    @keyframes flash {
-      0% { opacity: 0; }
-      10% { opacity: 0.25; }
-      100% { opacity: 0; }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* Card & lainnya (dengan teks putih) */
+    .card {
       position: relative;
-      z-index: 10;
+      background: rgba(10, 20, 15, 0.85); /* Hijau gelap transparan */
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.2);
+      transition: all 0.4s ease;
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+      border-color: #00ff88;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #00ff88;
+    }
+
+    .price-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #00ff88;
+      color: #001a0a;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      z-index: 5;
+    }
+
+    .features li {
+      margin-bottom: 0.7rem;
     }
 
     header {
@@ -70,15 +116,13 @@
       font-size: 2.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #00c853, #007e33);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
     }
 
     .subtitle {
       font-size: 1.1rem;
-      color: #555;
+      color: #aaffcc;
     }
 
     .services, .hosting-plans {
@@ -88,55 +132,10 @@
       margin-bottom: 3rem;
     }
 
-    .card {
-      position: relative; /* ✅ PENTING: agar price-tag bisa diposisikan */
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(0, 200, 83, 0.2);
-      border-radius: 16px;
-      padding: 1.8rem;
-      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.1);
-      transition: all 0.4s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
-      border-color: #00c853;
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #007e33;
-    }
-
-    .price-tag {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #00c853;
-      color: white;
-      font-weight: 700;
-      padding: 0.35rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.95rem;
-      z-index: 5;
-    }
-
-    .features {
-      list-style: none;
-      margin-top: 1rem;
-    }
-
-    .features li {
-      margin-bottom: 0.7rem;
-      font-weight: 500;
-    }
-
     .section-title {
       font-size: 1.9rem;
       margin: 2.5rem 0 1.5rem;
-      color: #007e33;
+      color: #00ff88;
       position: relative;
       display: inline-block;
     }
@@ -148,43 +147,55 @@
       left: 0;
       width: 50px;
       height: 3px;
-      background: #00c853;
+      background: #00ff88;
       border-radius: 2px;
     }
 
     .btn {
       display: inline-block;
-      background: #00c853;
-      color: white;
+      background: #00ff88;
+      color: #001a0a;
       font-weight: 700;
       padding: 0.9rem 2.2rem;
       border-radius: 30px;
       text-decoration: none;
       font-size: 1.1rem;
       transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
     }
 
     .btn:hover {
-      background: #007e33;
+      background: #00c853;
       transform: scale(1.04);
     }
 
     footer {
       text-align: center;
       margin-top: 4rem;
-      color: #555;
+      color: #aaffcc;
       padding-top: 2rem;
-      border-top: 1px solid #eee;
+      border-top: 1px solid rgba(0, 255, 136, 0.2);
     }
 
     @media (max-width: 768px) {
       body { padding: 1rem; }
       .card { padding: 1.4rem; }
-      .price-tag { top: 12px; right: 12px; font-size: 0.9rem; }
+      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
+  <!-- ✅ VIDEO BACKGROUND -->
+  <video autoplay muted loop class="video-bg" playsinline>
+    <source src="video.mp4" type="video/mp4">
+    <!-- Jika video gagal, tampilkan fallback gradient -->
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay gelap -->
+  <div class="overlay"></div>
+
+  <!-- Konten Utama -->
   <div class="container">
     <header>
       <h1>DitzzNetwork Official Store</h1>
@@ -209,7 +220,6 @@
 
     <h2 class="section-title">Hosting Premium</h2>
     <div class="hosting-plans">
-      <!-- Card 1 -->
       <div class="card">
         <span class="price-tag">Rp5K</span>
         <h3>50 Slot Player</h3>
@@ -219,7 +229,6 @@
           <li>OS: Windows / Linux</li>
         </ul>
       </div>
-      <!-- Card 2 -->
       <div class="card">
         <span class="price-tag">Rp10K</span>
         <h3>150 Slot Player</h3>
@@ -229,7 +238,6 @@
           <li>OS: Windows / Linux</li>
         </ul>
       </div>
-      <!-- Card 3 -->
       <div class="card">
         <span class="price-tag">Rp15K</span>
         <h3>200 Slot Player</h3>
@@ -239,7 +247,6 @@
           <li>OS: Windows / Linux</li>
         </ul>
       </div>
-      <!-- Card 4 -->
       <div class="card">
         <span class="price-tag">Rp20K</span>
         <h3>250 Slot Player</h3>
@@ -263,16 +270,17 @@
 
     <div style="text-align:center; margin-top:2rem;">
       <a href="https://wa.me/6285191923519" target="_blank" class="btn">Hubungi Admin Sekarang</a>
-      <p style="margin-top:1rem; color:#555;">
-        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00c853; text-decoration: none;">Lihat Testimoni di WhatsApp Channel</a>
+      <p style="margin-top:1rem; color:#aaffcc;">
+        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00ff88; text-decoration: none;">Lihat Testimoni di WhatsApp Channel</a>
       </p>
     </div>
 
     <footer>
-      <p>© 2025 DitzzNetwork. Admin: <a href="https://wa.me/6285191923519" style="color:#00c853; text-decoration: none;">+62 851-9192-3519 (DITZZ)</a></p>
+      <p>© 2025 DitzzNetwork. Admin: <a href="https://wa.me/6285191923519" style="color:#00ff88; text-decoration: none;">+62 851-9192-3519 (DITZZ)</a></p>
     </footer>
   </div>
 
+  <!-- Animasi Petir -->
   <script>
     function createLightning() {
       const side = Math.random() > 0.5 ? 20 : 80;
@@ -283,14 +291,8 @@
       bolt.style.animation = `lightningStrike ${duration}ms forwards`;
       document.body.appendChild(bolt);
 
-      const flash = document.createElement('div');
-      flash.className = 'flash';
-      flash.style.animation = `flash ${duration}ms forwards`;
-      document.body.appendChild(flash);
-
       setTimeout(() => {
         bolt?.remove();
-        flash?.remove();
       }, duration);
     }
 
