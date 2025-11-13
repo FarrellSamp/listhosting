@@ -2,295 +2,321 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DitzzCloud — Hosting Pterodactyl Mulai Rp5K</title>
-  <meta name="description" content="DitzzCloud menyediakan layanan hosting Pterodactyl termurah di Indonesia mulai dari Rp5.000! SSD Cepat, Lokasi Jakarta, Support Game Server SA:MP, FiveM, Minecraft, dan Discord Bot.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nerver Indo Roleplay</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@600;700&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#02060c;
-      color:white;
-      overflow-x:hidden;
-    }
-    #loading{
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:#02060c;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;z-index:9999;
-    }
-    .loader{
-      width:60px;height:60px;border-radius:50%;
-      border:5px solid rgba(255,255,255,0.1);
-      border-top:5px solid #00e5ff;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-    #loading p{margin-top:15px;color:#00e5ff;font-weight:600;}
-
-    nav{
-      position:fixed;top:0;width:100%;display:flex;
-      justify-content:space-between;align-items:center;
-      background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);
-      padding:15px 40px;z-index:1000;
-      border-bottom:1px solid rgba(0,229,255,0.4);
-    }
-    nav .logo{
-      font-family:'Orbitron',sans-serif;font-size:1.5rem;color:#00e5ff;
-      text-shadow:0 0 10px #00e5ff;
-    }
-    nav ul{display:flex;gap:25px;list-style:none;}
-    nav ul li a{
-      color:white;text-decoration:none;font-weight:600;
-      transition:.3s;
-    }
-    nav ul li a:hover{color:#00e5ff;text-shadow:0 0 8px #00e5ff;}
-
-    header{
-      height:100vh;display:flex;flex-direction:column;
-      justify-content:center;align-items:center;text-align:center;
-      padding:0 20px;position:relative;
-    }
-    header h1{
-      font-family:'Orbitron',sans-serif;
-      color:#00e5ff;font-size:2.6rem;
-      margin-bottom:15px;
-      animation:glow 2s infinite alternate;
-    }
-    @keyframes glow{
-      from{text-shadow:0 0 10px #00e5ff;}
-      to{text-shadow:0 0 25px #00b2cc;}
-    }
-    header p{color:#ccc;font-size:1.1rem;}
-    .typing{color:#00e5ff;font-family:'Orbitron',sans-serif;margin-top:12px;}
-
-    .container{
-      max-width:1100px;margin:100px auto;padding:20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .plans{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:25px;margin-top:40px;
-    }
-    .plan{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(0,229,255,0.3);
-      border-radius:15px;padding:25px;text-align:center;
-      backdrop-filter:blur(10px);opacity:0;transform:translateY(40px);
-      transition:all .5s ease;
-    }
-    .plan.visible{opacity:1;transform:translateY(0);}
-    .plan h2{
-      color:#00e5ff;margin-bottom:15px;font-size:1.4rem;
-    }
-    .price{
-      font-size:1.5rem;font-weight:700;color:#00e5ff;
-      margin:10px 0;
-    }
-    .plan ul{
-      list-style:none;text-align:left;margin:15px 0;
-    }
-    .plan li{
-      margin:6px 0;padding-left:10px;
-      border-left:2px solid #00e5ff;
-      font-size:0.95rem;
-    }
-    .btn{
-      display:inline-block;background:#00e5ff;color:#000;
-      padding:10px 24px;border-radius:30px;text-decoration:none;
-      font-weight:700;margin-top:15px;transition:.3s;
-      box-shadow:0 0 15px rgba(0,229,255,0.5);
-    }
-    .btn:hover{
-      background:#00b2cc;color:white;
-      transform:scale(1.05);
+    body {
+      background: #03060a;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    section{
-      text-align:center;margin-top:70px;
-      opacity:0;transform:translateY(40px);
-      transition:all 0.6s ease;
+    /* === Navbar === */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 255, 198, 0.2);
     }
-    section.visible{opacity:1;transform:translateY(0);}
-    section h3{
-      color:#00e5ff;font-size:1.7rem;margin-bottom:20px;
+    .logo { font-size: 1.8rem; color: #00ffc6; font-weight: bold; }
+    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-    section ul{
-      list-style:none;display:inline-block;text-align:left;
-      line-height:1.8;
+    nav ul a:hover { color: #00ffc6; }
+
+    /* === Hero Section === */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      color: white;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #00ffc6, #00bfa5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #ccc;
+    }
+    .btn {
+      background: #00ffc6;
+      color: #000;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #00bfa5;
+      color: white;
+      transform: scale(1.05);
     }
 
-    footer{
-      background:rgba(0,0,0,0.6);
-      text-align:center;padding:30px 10px;
-      border-top:2px solid #00e5ff;
-      color:#aaa;margin-top:80px;
+    /* === Konten === */
+    .container {
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+    section {
+      margin: 80px 0;
+      text-align: center;
+    }
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #00ffc6;
+    }
+    section p {
+      color: #aaa;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .whatsapp-float{
-      position:fixed;bottom:25px;right:25px;
-      width:60px;height:60px;background:#00e5ff;
-      color:#000;border-radius:50%;display:flex;
-      align-items:center;justify-content:center;
-      font-size:24px;text-decoration:none;
-      box-shadow:0 0 20px #00e5ff;z-index:999;
-      transition:.3s;
+    /* === Fitur === */
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
     }
-    .whatsapp-float:hover{
-      transform:scale(1.1);background:#00b2cc;color:white;
+    .feature {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 198, 0.2);
+      border-radius: 12px;
+      padding: 25px;
+      width: 250px;
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+    .feature i {
+      font-size: 2.5rem;
+      color: #00ffc6;
+      margin-bottom: 15px;
     }
 
-    #particles-js{
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      z-index:-1;
+    /* === Footer === */
+    footer {
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 30px 10px;
+      border-top: 2px solid #00ffc6;
+      color: #aaa;
+    }
+
+    /* === WhatsApp & Scroll Top === */
+    .whatsapp-float, .scroll-top {
+      position: fixed;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 0 25px #00ffc6;
+      transition: 0.3s;
+      z-index: 999;
+    }
+    .whatsapp-float {
+      bottom: 25px;
+      right: 25px;
+      background: #00ffc6;
+      color: #000;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: #00bfa5;
+      color: white;
+    }
+    .scroll-top {
+      bottom: 100px;
+      right: 25px;
+      background: rgba(0, 255, 198, 0.3);
+      color: #00ffc6;
+      display: none;
+    }
+    .scroll-top.show {
+      display: flex;
+    }
+    .scroll-top:hover {
+      background: #00ffc6;
+      color: #000;
+    }
+
+    /* === Particles Background === */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #03060a;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      nav ul { gap: 15px; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
-  <div id="loading">
-    <div class="loader"></div>
-    <p>Loading DitzzCloud...</p>
-  </div>
 
+  <!-- Particles Background -->
   <div id="particles-js"></div>
 
+  <!-- Navbar -->
   <nav>
-    <div class="logo">☁️ DitzzCloud</div>
+    <div class="logo">🔥 Nerver Indo RP</div>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#plans">Paket</a></li>
+      <li><a href="#home">Beranda</a></li>
       <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#tentang">Tentang</a></li>
       <li><a href="#kontak">Kontak</a></li>
     </ul>
   </nav>
 
+  <!-- Hero -->
   <header id="home">
-    <h1>.Hosting Pterodactyl Termurah</h1>
-    <p>Mulai dari <strong>Rp5.000/bulan</strong> — Lokasi Indonesia, SSD Cepat, Auto-Install Game!</p>
-    <div class="typing" id="typing"></div>
+    <h1>Selamat Datang di Nerver Indo Roleplay</h1>
+    <p>Roleplay terbaik di Indonesia dengan sistem realistis, gameplay seru, dan komunitas aktif!</p>
+    <a href="https://wa.me/6285191923519?text=Halo,%20saya%20mau%20info%20Nerver%20Indo%20RP" class="btn" target="_blank">
+      Gabung Sekarang!
+    </a>
   </header>
 
+  <!-- Fitur -->
   <div class="container">
-    <div class="plans" id="plans">
-      <div class="plan">
-        <h2>🎮 Starter</h2>
-        <div class="price">Rp5.000</div>
-        <p>/bulan</p>
-        <ul>
-          <li>0.5 vCPU</li>
-          <li>512 MB RAM</li>
-          <li>5 GB SSD</li>
-          <li>Unmetered Bandwidth</li>
-          <li>Auto Install SA:MP</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Starter" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-
-      <div class="plan">
-        <h2>🚀 Basic</h2>
-        <div class="price">Rp9.000</div>
-        <p>/bulan</p>
-        <ul>
-          <li>1 vCPU</li>
-          <li>1 GB RAM</li>
-          <li>10 GB SSD NVMe</li>
-          <li>DDoS Protection</li>
-          <li>Support Minecraft / FiveM</li>
-          <li>Backup Mingguan</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Basic" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-
-      <div class="plan">
-        <h2>💎 Pro</h2>
-        <div class="price">Rp15.000</div>
-        <p>/bulan</p>
-        <ul>
-          <li>1.5 vCPU</li>
-          <li>2 GB RAM</li>
-          <li>20 GB NVMe</li>
-          <li>IPv4 Dedicated</li>
-          <li>Full Root Access</li>
-          <li>99.9% Uptime</li>
-          <li>Support Discord Bot</li>
-        </ul>
-        <a href="https://wa.me/6285191923519?text=Saya%20mau%20Paket%20Pro" class="btn" target="_blank">Pesan Sekarang</a>
-      </div>
-    </div>
-
     <section id="fitur">
-      <h3>✨ Fitur Unggulan DitzzCloud</h3>
-      <ul>
-        <li>📍 Lokasi Server: Jakarta (Latensi Rendah)</li>
-        <li>⚡ SSD NVMe — Load Cepat</li>
-        <li>🛡️ DDoS Protection Dasar</li>
-        <li>🎮 Auto-Installer: SA:MP, FiveM, Minecraft, TS3</li>
-        <li>📱 Support via WhatsApp 24/7</li>
-        <li>🔄 Backup Otomatis (Paket Basic+)</li>
-      </ul>
+      <h2>✨ Fitur Unggulan</h2>
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Anti-Cheat</h3>
+          <p>Sistem keamanan canggih untuk pengalaman fairplay.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Uptime 99.9%</h3>
+          <p>Server stabil tanpa lag atau downtime.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-users"></i>
+          <h3>Komunitas Aktif</h3>
+          <p>Main bareng ratusan pemain setiap hari.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="kontak">
-      <h3>💬 Butuh Bantuan?</h3>
+    <!-- Tentang -->
+    <section id="tentang">
+      <h2>🌍 Tentang Nerver Indo RP</h2>
       <p>
-        Hubungi kami via WhatsApp:  
-        <a href="https://wa.me/6285191923519" style="color:#00e5ff;font-weight:600;text-decoration:none;">
-          +62 851-9192-3519 (Ditzz)
-        </a>
+        Nerver Indo Roleplay adalah server SA:MP berbasis roleplay realistis yang dikembangkan untuk pemain Indonesia.  
+        Kami mengutamakan kualitas gameplay, keadilan, dan kekeluargaan dalam komunitas.
       </p>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak">
+      <h2>📞 Kontak Kami</h2>
+      <p>
+        Punya pertanyaan? Langsung chat kami via WhatsApp!
+      </p>
+      <br>
+      <a href="https://wa.me/6285191923519?text=Halo,%20saya%20mau%20info%20Nerver%20Indo%20RP" class="btn" target="_blank">
+        Hubungi Admin
+      </a>
     </section>
   </div>
 
+  <!-- Footer -->
   <footer>
-    © 2025 DitzzCloud — Hosting Pterodactyl Termurah di Indonesia
+    &copy; 2025 Nerver Indo Roleplay. All rights reserved.
   </footer>
 
-  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">💬</a>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Scroll Top -->
+  <a href="#" class="scroll-top" id="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    window.addEventListener('load', () => {
-      document.getElementById('loading').style.display = 'none';
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.plan, section').forEach(el => observer.observe(el));
-
     particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 60 },
-        "color": { "value": "#00e5ff" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 2.5 },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00e5ff",
-          "opacity": 0.3,
-          "width": 1
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#00ffc6" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00bfa5",
+          opacity: 0.2,
+          width: 1
         },
-        "move": { "enable": true, "speed": 1.5 }
+        move: { enable: true, speed: 2 }
       },
-      "interactivity": {
-        "events": { "onhover": { "enable": true, "mode": "grab" } }
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "repulse" } }
       },
-      "retina_detect": true
+      retina_detect: true
     });
 
-    const text = "SSD Cepat ⚡ | Lokasi ID 🇮🇩 | Mulai Rp5K 💸 | DitzzCloud";
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        document.getElementById("typing").textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 120);
+    // Scroll Top Button
+    const scrollTopBtn = document.getElementById("scroll-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
       }
-    }
-    type();
+    });
   </script>
 </body>
 </html>
