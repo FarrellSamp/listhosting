@@ -6,6 +6,60 @@
   <title>DitzzNetwork Official Store</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <style>
+    /* ===== ANIMASI PETIR ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: white;
+    }
+
+    .lightning {
+      position: fixed;
+      top: 0;
+      width: 3px;
+      background: white;
+      opacity: 0;
+      z-index: -1;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Petir kiri */
+    .lightning.left {
+      left: 15%;
+      height: 70vh;
+      transform-origin: top;
+      transform: scaleY(0);
+    }
+
+    /* Petir kanan */
+    .lightning.right {
+      right: 20%;
+      height: 60vh;
+      transform-origin: top;
+      transform: scaleY(0);
+    }
+
+    @keyframes strike {
+      0% {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: scaleY(1);
+        opacity: 0;
+      }
+    }
+
+    /* ===== STYLING UTAMA ===== */
     :root {
       --white: #ffffff;
       --off-white: #fafafa;
@@ -15,9 +69,8 @@
       --green-dark: #007e33;
       --text-dark: #1a1a1a;
       --text-gray: #555;
-      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-bg: rgba(255, 255, 255, 0.92);
       --border-radius: 16px;
-      --shadow: 0 6px 20px rgba(0, 200, 83, 0.15);
       --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
@@ -29,16 +82,20 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--off-white);
+      background-color: var(--off-white);
       color: var(--text-dark);
       min-height: 100vh;
       padding: 2rem;
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 10;
     }
 
     header {
@@ -73,18 +130,17 @@
 
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(0, 200, 83, 0.2);
+      border: 1px solid rgba(0, 200, 83, 0.25);
       border-radius: var(--border-radius);
       padding: 1.8rem;
       transition: var(--transition);
       position: relative;
-      box-shadow: var(--shadow);
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.12);
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
+      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.22);
       border-color: var(--green);
     }
 
@@ -104,7 +160,6 @@
       padding: 0.35rem 0.8rem;
       border-radius: 20px;
       font-size: 0.95rem;
-      font-weight: 600;
     }
 
     .features {
@@ -152,7 +207,6 @@
       text-decoration: none;
       font-size: 1.1rem;
       transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
       border: none;
       font-family: 'Inter', sans-serif;
     }
@@ -178,10 +232,6 @@
       font-weight: 600;
     }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
-
     @media (max-width: 768px) {
       body {
         padding: 1rem;
@@ -196,10 +246,11 @@
   </style>
 </head>
 <body>
+  <!-- Petir akan dibuat via JavaScript -->
   <div class="container">
     <header>
       <h1>DitzzNetwork Official Store</h1>
-      <p class="subtitle">🚀 HOSTING PREMIUM • LAYANAN INSTAN • SUPPORT 24/7</p>
+      <p class="subtitle">⚡ HOSTING PREMIUM • PETIR MENYAMBAR • SUPPORT 24/7</p>
     </header>
 
     <h2 class="section-title">Jasa Instalasi</h2>
@@ -281,7 +332,38 @@
   </div>
 
   <script>
-    console.log("DitzzNetwork — Premium Hosting with Fresh Green Style ✅");
+    // Fungsi untuk membuat petir menyambar secara acak
+    function createLightning() {
+      const side = Math.random() > 0.5 ? 'left' : 'right';
+      const lightning = document.createElement('div');
+      lightning.classList.add('lightning', side);
+      
+      // Durasi acak (sangat cepat: 200–400ms)
+      const duration = 200 + Math.random() * 200;
+      lightning.style.animation = `strike ${duration}ms forwards`;
+      
+      document.body.appendChild(lightning);
+      
+      // Hapus elemen setelah animasi selesai
+      setTimeout(() => {
+        lightning.remove();
+      }, duration);
+    }
+
+    // Sambar petir setiap 3–8 detik secara acak
+    function scheduleLightning() {
+      const delay = 3000 + Math.random() * 5000;
+      setTimeout(() => {
+        createLightning();
+        scheduleLightning();
+      }, delay);
+    }
+
+    // Mulai animasi petir
+    scheduleLightning();
+
+    // Tambahkan satu sambaran awal setelah 1 detik
+    setTimeout(createLightning, 1000);
   </script>
 </body>
 </html>
