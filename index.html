@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,14 +7,17 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <style>
     :root {
-      --primary: #0f0c29;
-      --secondary: #302b63;
-      --accent: #24243e;
-      --gold: #ffd700;
-      --white: #f8f9fa;
-      --gray: #adb5bd;
-      --card-bg: rgba(15, 12, 41, 0.7);
+      --white: #ffffff;
+      --off-white: #fafafa;
+      --light-gray: #f0f4f8;
+      --green: #00c853;
+      --green-light: #b9f6ca;
+      --green-dark: #007e33;
+      --text-dark: #1a1a1a;
+      --text-gray: #555;
+      --card-bg: rgba(255, 255, 255, 0.85);
       --border-radius: 16px;
+      --shadow: 0 6px 20px rgba(0, 200, 83, 0.15);
       --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
@@ -26,8 +29,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-      color: var(--white);
+      background: var(--off-white);
+      color: var(--text-dark);
       min-height: 100vh;
       padding: 2rem;
       line-height: 1.6;
@@ -41,86 +44,67 @@
     header {
       text-align: center;
       margin-bottom: 3rem;
+      padding: 1.5rem 0;
     }
 
     h1 {
       font-size: 2.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      background: linear-gradient(to right, var(--gold), #fff);
+      color: var(--green-dark);
+      background: linear-gradient(to right, var(--green), var(--green-dark));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .subtitle {
       font-size: 1.1rem;
-      color: var(--gray);
+      color: var(--text-gray);
+      margin-top: 0.5rem;
     }
 
     .services, .hosting-plans {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.8rem;
       margin-bottom: 3rem;
     }
 
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 200, 83, 0.2);
       border-radius: var(--border-radius);
       padding: 1.8rem;
       transition: var(--transition);
       position: relative;
-      overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 215, 0, 0.3);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(to right, var(--gold), transparent);
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .card:hover::before {
-      opacity: 1;
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
+      border-color: var(--green);
     }
 
     .card h3 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .card h3::before {
-      content: "✅";
+      color: var(--green-dark);
     }
 
     .price-tag {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: var(--gold);
-      color: var(--primary);
+      background: var(--green);
+      color: white;
       font-weight: 700;
-      padding: 0.3rem 0.7rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 20px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     .features {
@@ -129,21 +113,15 @@
     }
 
     .features li {
-      margin-bottom: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .features li::before {
-      content: "•";
-      color: var(--gold);
-      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+      color: var(--text-dark);
+      font-weight: 500;
     }
 
     .section-title {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       margin: 2.5rem 0 1.5rem;
+      color: var(--green-dark);
       position: relative;
       display: inline-block;
     }
@@ -155,7 +133,8 @@
       left: 0;
       width: 50px;
       height: 3px;
-      background: var(--gold);
+      background: var(--green);
+      border-radius: 2px;
     }
 
     .cta {
@@ -165,27 +144,42 @@
 
     .btn {
       display: inline-block;
-      background: linear-gradient(to right, var(--gold), #ffba00);
-      color: var(--primary);
+      background: var(--green);
+      color: white;
       font-weight: 700;
-      padding: 0.8rem 2rem;
+      padding: 0.9rem 2.2rem;
       border-radius: 30px;
       text-decoration: none;
       font-size: 1.1rem;
       transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+      border: none;
+      font-family: 'Inter', sans-serif;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+      background: var(--green-dark);
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
     }
 
     footer {
       text-align: center;
       margin-top: 4rem;
-      color: var(--gray);
+      color: var(--text-gray);
       font-size: 0.95rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    footer a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -194,6 +188,9 @@
       }
       h1 {
         font-size: 2.2rem;
+      }
+      .card {
+        padding: 1.4rem;
       }
     }
   </style>
@@ -273,19 +270,18 @@
 
     <div class="cta">
       <a href="https://wa.me/6285191923519" target="_blank" class="btn">Hubungi Admin Sekarang</a>
-      <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--gray);">
-        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color: var(--gold); text-decoration: none;">Lihat Testimoni di WhatsApp Channel</a>
+      <p style="margin-top: 1rem; color: var(--text-gray);">
+        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank">Lihat Testimoni di WhatsApp Channel</a>
       </p>
     </div>
 
     <footer>
-      <p>© 2025 DitzzNetwork. All rights reserved. Admin: +62 851-9192-3519 (DITZZ)</p>
+      <p>© 2025 DitzzNetwork. All rights reserved. Admin: <a href="https://wa.me/6285191923519">+62 851-9192-3519 (DITZZ)</a></p>
     </footer>
   </div>
 
   <script>
-    // Optional: Add subtle scroll animation or interactivity later
-    console.log("Welcome to DitzzNetwork — Premium Hosting Experience.");
+    console.log("DitzzNetwork — Premium Hosting with Fresh Green Style ✅");
   </script>
 </body>
 </html>
