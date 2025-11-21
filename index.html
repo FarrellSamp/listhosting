@@ -3,303 +3,406 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DitzzNetwork Official Store</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
+  <title>Shared House Roleplay | SA:MP Server</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* ===== VIDEO BACKGROUND ===== */
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -3;
-    }
-
-    /* Overlay gelap agar teks tetap terbaca */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 10, 5, 0.65); /* Hijau gelap transparan */
-      z-index: -2;
-    }
-
-    /* Konten utama */
-    body {
+    * {
       margin: 0;
-      padding: 2rem;
-      font-family: 'Inter', sans-serif;
-      color: white;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    body {
+      background: #02060a;
+      color: #fff;
+    }
+
+    /* Loading Screen */
+    #loading {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.2);
+      border-top: 5px solid #00ffc6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    #loading p {
+      margin-top: 20px;
+      color: #00ffc6;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Global Styles */
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ffc6;
+    }
+    nav ul {
+      display: flex;
+      gap: 25px;
+    }
+    nav a {
+      color: #ccc;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00ffc6;
+    }
+
+    /* Header Hero */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #00ffc6, #00bfa5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #aaa;
+      max-width: 700px;
+      margin-bottom: 25px;
+    }
+    .typing {
+      font-size: 1.1rem;
+      color: #00ffc6;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-block;
+      background: #00ffc6;
+      color: #000;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.6);
+    }
+
+    /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
-      z-index: 10;
+      padding: 80px 20px 60px;
     }
 
-    /* Petir tetap di atas video, di bawah konten */
-    .lightning-bolt {
-      position: fixed;
-      top: 0;
-      height: 60vh;
-      width: 6px;
-      background: #00ff88;
-      box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
-      opacity: 0;
-      z-index: -1; /* Di atas video, di bawah overlay */
-      transform: scaleY(0);
-      transform-origin: top;
-    }
-
-    @keyframes lightningStrike {
-      0% { transform: scaleY(0); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: scaleY(1); opacity: 0; }
-    }
-
-    /* Card & lainnya (dengan teks putih) */
-    .card {
-      position: relative;
-      background: rgba(10, 20, 15, 0.85); /* Hijau gelap transparan */
-      border: 1px solid rgba(0, 255, 136, 0.2);
-      border-radius: 16px;
-      padding: 1.8rem;
-      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.2);
-      transition: all 0.4s ease;
-      color: white;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
-      border-color: #00ff88;
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #00ff88;
-    }
-
-    .price-tag {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #00ff88;
-      color: #001a0a;
-      font-weight: 700;
-      padding: 0.35rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.95rem;
-      z-index: 5;
-    }
-
-    .features li {
-      margin-bottom: 0.7rem;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: white;
-      text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
-    }
-
-    .subtitle {
-      font-size: 1.1rem;
-      color: #aaffcc;
-    }
-
-    .services, .hosting-plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-bottom: 3rem;
-    }
-
+    /* Section Title */
     .section-title {
-      font-size: 1.9rem;
-      margin: 2.5rem 0 1.5rem;
-      color: #00ff88;
-      position: relative;
-      display: inline-block;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+      color: #00ffc6;
     }
 
-    .section-title::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: #00ff88;
-      border-radius: 2px;
+    /* Server Info */
+    #server-info ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    #server-info li {
+      background: rgba(0, 255, 198, 0.1);
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #00ffc6;
+      border: 1px solid rgba(0, 255, 198, 0.3);
     }
 
-    .btn {
-      display: inline-block;
-      background: #00ff88;
-      color: #001a0a;
-      font-weight: 700;
-      padding: 0.9rem 2.2rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    /* Features */
+    #features {
+      margin: 80px 0;
+    }
+    #features ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    #features li {
+      background: rgba(0, 20, 30, 0.7);
+      padding: 25px;
+      border-radius: 15px;
+      width: 220px;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 198, 0.2);
+      transition: transform 0.3s;
+    }
+    #features li:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 255, 198, 0.5);
+    }
+    #features i {
+      font-size: 2.5rem;
+      color: #00ffc6;
+      margin-bottom: 15px;
     }
 
-    .btn:hover {
-      background: #00c853;
-      transform: scale(1.04);
-    }
-
+    /* Footer */
     footer {
       text-align: center;
-      margin-top: 4rem;
-      color: #aaffcc;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(0, 255, 136, 0.2);
+      padding: 30px 10px;
+      background: rgba(0, 0, 0, 0.6);
+      border-top: 2px solid #00ffc6;
+      color: #aaa;
+      margin-top: 60px;
     }
 
+    /* WhatsApp & ScrollTop */
+    .whatsapp-float, .scroll-top {
+      position: fixed;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 0 25px #00ffc6;
+      transition: 0.3s;
+      z-index: 999;
+    }
+    .whatsapp-float {
+      bottom: 25px;
+      right: 25px;
+      background: #00ffc6;
+      color: #000;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: #00bfa5;
+      color: white;
+    }
+    .scroll-top {
+      bottom: 100px;
+      right: 25px;
+      background: rgba(0, 255, 198, 0.3);
+      color: #00ffc6;
+      display: none;
+    }
+    .scroll-top.show {
+      display: flex;
+    }
+    .scroll-top:hover {
+      background: #00ffc6;
+      color: #000;
+    }
+
+    /* Particles */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #03060a;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      body { padding: 1rem; }
-      .card { padding: 1.4rem; }
-      h1 { font-size: 2.2rem; }
+      header h1 { font-size: 2.5rem; }
+      nav ul { gap: 15px; font-size: 0.9rem; }
+      .logo { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- ✅ VIDEO BACKGROUND -->
-  <video autoplay muted loop class="video-bg" playsinline>
-    <source src="video.mp4" type="video/mp4">
-    <!-- Jika video gagal, tampilkan fallback gradient -->
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Overlay gelap -->
-  <div class="overlay"></div>
-
-  <!-- Konten Utama -->
-  <div class="container">
-    <header>
-      <h1>DitzzNetwork Official Store</h1>
-      <p class="subtitle">⚡ HOSTING PREMIUM • PETIR MENYAMBAR • SUPPORT 24/7</p>
-    </header>
-
-    <h2 class="section-title">Jasa Instalasi</h2>
-    <div class="services">
-      <div class="card">
-        <h3>Install Panel Pterodactyl + Node</h3>
-        <p>Harga: <strong>Rp15.000</strong></p>
-      </div>
-      <div class="card">
-        <h3>Install Database + phpMyAdmin</h3>
-        <p>Harga: <strong>Rp8.000</strong></p>
-      </div>
-      <div class="card">
-        <h3>Sell Subdomain Web + Node</h3>
-        <p>Harga: <strong>Rp5.000</strong></p>
-      </div>
-    </div>
-
-    <h2 class="section-title">Hosting Premium</h2>
-    <div class="hosting-plans">
-      <div class="card">
-        <span class="price-tag">Rp5K</span>
-        <h3>50 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 100</li>
-          <li>RAM/Disk: 10GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp10K</span>
-        <h3>150 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 150</li>
-          <li>RAM/Disk: 25GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp15K</span>
-        <h3>200 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 200</li>
-          <li>RAM/Disk: 25GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="price-tag">Rp20K</span>
-        <h3>250 Slot Player</h3>
-        <ul class="features">
-          <li>CPU: 250</li>
-          <li>RAM/Disk: 80GB</li>
-          <li>OS: Windows / Linux</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2 class="section-title">Benefit</h2>
-    <div class="card" style="max-width: 700px; margin: 0 auto;">
-      <ul class="features">
-        <li>PMA: ON</li>
-        <li>Database: ON</li>
-        <li>Port Voice: ON</li>
-        <li>Ping Stabil: 20–45ms</li>
-      </ul>
-    </div>
-
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="https://wa.me/6285191923519" target="_blank" class="btn">Hubungi Admin Sekarang</a>
-      <p style="margin-top:1rem; color:#aaffcc;">
-        📱 <a href="https://whatsapp.com/channel/0029Vb6AJwNGehETESmmGi3Q" target="_blank" style="color:#00ff88; text-decoration: none;">Lihat Testimoni di WhatsApp Channel</a>
-      </p>
-    </div>
-
-    <footer>
-      <p>© 2025 DitzzNetwork. Admin: <a href="https://wa.me/6285191923519" style="color:#00ff88; text-decoration: none;">+62 851-9192-3519 (DITZZ)</a></p>
-    </footer>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <div class="loader"></div>
+    <p>Loading Shared House Roleplay...</p>
   </div>
 
-  <!-- Animasi Petir -->
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">🏡 Shared House RP</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#server-info">Info Server</a></li>
+      <li><a href="#features">Fitur</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home">
+    <h1>Shared House Roleplay</h1>
+    <p>Server SA:MP Roleplay terbaik dengan komunitas aktif, stabilitas tinggi, dan fitur eksklusif!</p>
+    <a href="https://wa.me/6285191923519?text=Halo%20Ditzz,%20saya%20mau%20gabung%20Shared%20House%20RP!" class="btn" target="_blank">
+      Gabung Sekarang
+    </a>
+    <div class="typing" id="typing"></div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Server Info -->
+    <section id="server-info">
+      <h2 class="section-title">📊 Info Server</h2>
+      <ul>
+        <li>IP: samp.sharedhouse-rp.com:7777</li>
+        <li>Slot: 150 Player</li>
+        <li>Ping: 20–45ms</li>
+        <li>Uptime: 99.9%</li>
+      </ul>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <h2 class="section-title">✨ Fitur Unggulan</h2>
+      <ul>
+        <li>
+          <i class="fas fa-shield-alt"></i>
+          <p>Anti-Cheat & Anti-DDoS</p>
+        </li>
+        <li>
+          <i class="fas fa-microphone-alt"></i>
+          <p>Port Voice Aktif</p>
+        </li>
+        <li>
+          <i class="fas fa-database"></i>
+          <p>Database & PMA On</p>
+        </li>
+        <li>
+          <i class="fas fa-sync-alt"></i>
+          <p>Auto Backup Harian</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">📞 Kontak Admin</h2>
+      <p style="text-align: center; font-size: 1.1rem;">
+        Hubungi <strong>Ditzz</strong> untuk info lebih lanjut:<br>
+        <a href="https://wa.me/6285191923519" style="color:#00ffc6; font-weight:600;">
+          +62 851-9192-3519 (WhatsApp)
+        </a>
+      </p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Shared House Roleplay — Server SA:MP Roleplay Resmi 💎
+  </footer>
+
+  <!-- Floating Buttons -->
+  <a href="https://wa.me/6285191923519" class="whatsapp-float" target="_blank">💬</a>
+  <a href="#home" class="scroll-top" id="scrollTop">⬆</a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    function createLightning() {
-      const side = Math.random() > 0.5 ? 20 : 80;
-      const bolt = document.createElement('div');
-      bolt.className = 'lightning-bolt';
-      bolt.style.left = `${side}%`;
-      const duration = 350 + Math.random() * 150;
-      bolt.style.animation = `lightningStrike ${duration}ms forwards`;
-      document.body.appendChild(bolt);
-
+    // Hide loading screen
+    window.addEventListener('load', () => {
+      document.getElementById('loading').style.opacity = '0';
       setTimeout(() => {
-        bolt?.remove();
-      }, duration);
-    }
+        document.getElementById('loading').style.display = 'none';
+      }, 500);
+    });
 
-    setTimeout(createLightning, 1200);
-    setInterval(() => {
-      if (Math.random() > 0.4) createLightning();
-    }, 5000 + Math.random() * 4000);
+    // Particles.js
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00ffc6" },
+        opacity: { value: 0.6 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffc6",
+          opacity: 0.4,
+          width: 1
+        },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "grab" }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Typing effect
+    const text = "Realistic RP • Active Community • Fair Rules • No Lag • Shared House RP";
+    let i = 0;
+    function typeText() {
+      if (i < text.length) {
+        document.getElementById("typing").textContent += text.charAt(i);
+        i++;
+        setTimeout(typeText, 80);
+      }
+    }
+    setTimeout(typeText, 1500);
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById("scrollTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    });
   </script>
 </body>
 </html>
