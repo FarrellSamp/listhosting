@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shared House Roleplay | Premium SA:MP Server</title>
+  <title>Shared House Roleplay | SA:MP Roleplay Server</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon: #00ffc6;
-      --dark: #050a10;
-      --darker: #020407;
-      --glass: rgba(10, 20, 30, 0.4);
+      --primary: #00ffc6;
+      --bg: #03070d;
+      --card-bg: rgba(10, 20, 30, 0.6);
+      --text: #e0f0ff;
+      --text-muted: #8ab4d6;
     }
 
     * {
@@ -23,105 +23,43 @@
     }
 
     body {
-      background: var(--darker);
-      color: #e0f0ff;
-      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
       overflow-x: hidden;
-      line-height: 1.6;
     }
 
-    /* —————— HERO —————— */
+    /* —————— VIDEO BACKGROUND —————— */
     .hero {
+      position: relative;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(circle at center, rgba(0,40,60,0.3) 0%, var(--darker) 100%);
+      padding: 0 20px;
     }
 
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Overlay gelap agar teks tetap terbaca */
     .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><rect width="100" height="100" fill="%2300ffc6"/></svg>');
+      background: rgba(0, 5, 10, 0.75); /* overlay gelap */
       z-index: -1;
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4.5rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #00ffc6, #00bfa5, #008a80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.5rem;
-      letter-spacing: 2px;
-      text-shadow: 0 0 20px rgba(0, 255, 198, 0.4);
-    }
-
-    .tagline {
-      font-size: 1.4rem;
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      color: #a0d6eb;
-      opacity: 0.9;
-    }
-
-    .ip-box {
-      background: var(--glass);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 255, 198, 0.3);
-      border-radius: 16px;
-      padding: 20px 40px;
-      margin: 1.5rem 0;
-      font-family: 'Orbitron', monospace;
-      font-size: 1.3rem;
-      color: var(--neon);
-      box-shadow: 0 0 25px rgba(0, 255, 198, 0.2);
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .ip-box:hover {
-      border-color: var(--neon);
-      box-shadow: 0 0 40px rgba(0, 255, 198, 0.5);
-      transform: translateY(-3px);
-    }
-
-    .ip-box::after {
-      content: "📋 Salin";
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: #66aacc;
-    }
-
-    .btn-connect {
-      background: linear-gradient(90deg, #00bfa5, #008a80);
-      color: white;
-      border: none;
-      padding: 14px 40px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 50px;
-      margin-top: 1rem;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 5px 20px rgba(0, 191, 165, 0.3);
-    }
-
-    .btn-connect:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 191, 165, 0.6);
     }
 
     /* —————— NAV —————— */
@@ -129,29 +67,30 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 20px 5%;
+      padding: 18px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(5, 15, 25, 0.6);
-      border-bottom: 1px solid rgba(0, 255, 198, 0.1);
     }
 
-    .nav-logo {
+    .logo {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
-      color: var(--neon);
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00ffc6, #00bfa5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 28px;
     }
 
     .nav-links a {
-      color: #b0d0e0;
+      color: #a0c8e0;
       text-decoration: none;
       font-weight: 500;
       font-size: 1.05rem;
@@ -159,99 +98,153 @@
     }
 
     .nav-links a:hover {
-      color: var(--neon);
+      color: var(--primary);
     }
 
-    /* —————— SECTIONS —————— */
+    /* —————— HERO CONTENT —————— */
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.2rem;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(to right, #00ffc6, #00e0c0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0, 255, 198, 0.3);
+    }
+
+    .hero p.subtitle {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: var(--text-muted);
+    }
+
+    .ip-display {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 198, 0.3);
+      border-radius: 14px;
+      padding: 18px 36px;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      color: var(--primary);
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.2);
+      margin: 1.5rem 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .ip-display:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 30px rgba(0, 255, 198, 0.4);
+    }
+
+    .btn {
+      display: inline-block;
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 12px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(0, 255, 198, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* —————— SECTIONS (sama seperti sebelumnya) —————— */
     section {
-      padding: 100px 5%;
-      max-width: 1200px;
+      padding: 90px 5%;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
     .section-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       text-align: center;
-      margin-bottom: 2.5rem;
-      color: var(--neon);
-      position: relative;
+      margin-bottom: 2.2rem;
+      color: var(--primary);
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(to right, transparent, var(--neon), transparent);
-      margin: 12px auto;
-    }
-
-    .features-grid {
+    .rules-list, .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 30px;
     }
 
-    .feature-card {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 255, 198, 0.2);
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(100, 200, 255, 0.1);
       border-radius: 16px;
-      padding: 30px;
-      text-align: center;
-      transition: transform 0.4s, border-color 0.4s;
+      padding: 28px;
+      transition: transform 0.3s, border 0.3s;
     }
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--neon);
-      box-shadow: 0 10px 30px rgba(0, 255, 198, 0.2);
+    .card:hover {
+      border-color: rgba(0, 255, 198, 0.4);
+      transform: translateY(-5px);
     }
 
-    .feature-icon {
-      font-size: 2.8rem;
-      color: var(--neon);
-      margin-bottom: 20px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
       color: white;
     }
 
-    /* —————— FOOTER —————— */
-    footer {
-      background: rgba(0, 10, 15, 0.8);
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(0, 255, 198, 0.15);
-      color: #88aabb;
-      font-size: 0.95rem;
+    .card ul {
+      padding-left: 20px;
+      color: var(--text-muted);
     }
 
-    /* —————— SCROLL TOP —————— */
+    .card li {
+      margin-bottom: 8px;
+    }
+
+    #join {
+      text-align: center;
+      background: rgba(0, 20, 30, 0.3);
+      border-radius: 20px;
+      padding: 50px 30px;
+      margin-top: 40px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(0, 255, 198, 0.1);
+      margin-top: 60px;
+    }
+
     .scroll-top {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 50px;
-      height: 50px;
-      background: rgba(0, 255, 198, 0.2);
-      border: 1px solid var(--neon);
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 30, 40, 0.6);
+      border: 1px solid var(--primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--neon);
-      font-size: 1.2rem;
+      color: var(--primary);
       text-decoration: none;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 990;
+      transition: all 0.4s;
+      z-index: 900;
     }
 
     .scroll-top.show {
@@ -260,112 +253,142 @@
     }
 
     .scroll-top:hover {
-      background: var(--neon);
+      background: var(--primary);
       color: #000;
     }
 
-    /* —————— RESPONSIVE —————— */
     @media (max-width: 768px) {
-      .logo { font-size: 3rem; }
-      .tagline { font-size: 1.1rem; }
-      .ip-box { padding: 15px 20px; font-size: 1.1rem; }
-      .nav-links { display: none; } /* bisa dikembangkan jadi hamburger */
+      .hero h1 { font-size: 2.8rem; }
+      .hero p.subtitle { font-size: 1.1rem; }
+      .ip-display { font-size: 1.2rem; padding: 14px 24px; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="video.mp4" type="video/mp4">
+    <!-- Jika video tidak bisa dimuat, fallback ke background solid -->
+    Maaf, browser Anda tidak mendukung video background.
+  </video>
+
   <!-- Navigation -->
   <nav>
-    <div class="nav-logo">🏡 SHR</div>
+    <div class="logo">Shared House RP</div>
     <div class="nav-links">
       <a href="#home">Beranda</a>
-      <a href="#features">Fitur</a>
       <a href="#rules">Aturan</a>
-      <a href="#contact">Kontak</a>
+      <a href="#features">Sistem RP</a>
+      <a href="#join">Gabung</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <div class="hero" id="home">
-    <h1 class="logo">SHARED HOUSE ROLEPLAY</h1>
-    <p class="tagline">Server SA:MP Roleplay Realistis • Komunitas Aktif • Zero Lag • Full Custom</p>
-
-    <div class="ip-box" id="ipAddress">194.102.181.219:8366</div>
-
-    <button class="btn-connect" id="connectBtn">
-      <i class="fas fa-plug"></i> Sambungkan Sekarang
-    </button>
+    <h1>SHARED HOUSE ROLEPLAY</h1>
+    <p class="subtitle">Server SA:MP Roleplay Realistis • Komunitas Ramah • Zero OOC • Full Custom</p>
+    <div class="ip-display" id="ipBox">194.102.181.219:8366</div>
+    <a href="samp://194.102.181.219:8366" class="btn">Sambungkan ke Server</a>
   </div>
 
-  <!-- Fitur -->
+  <!-- Aturan -->
+  <section id="rules">
+    <h2 class="section-title">📜 ATURAN SERVER</h2>
+    <div class="rules-list">
+      <div class="card">
+        <h3>Roleplay Wajib</h3>
+        <ul>
+          <li>Tidak boleh OOC (Out of Character)</li>
+          <li>Harus berperilaku sesuai karakter</li>
+          <li>Dilarang godmodding / powergaming</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Perilaku Pemain</h3>
+        <ul>
+          <li>Hormati semua pemain & staff</li>
+          <li>Tidak boleh spam, toxic, atau RDM</li>
+          <li>Gunakan bahasa Indonesia yang sopan</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Teknis</h3>
+        <ul>
+          <li>Dilarang menggunakan cheat/modifikasi ilegal</li>
+          <li>Akun tidak boleh diganti-ganti (multi-client)</li>
+          <li>Pelanggaran = banned permanen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fitur Roleplay -->
   <section id="features">
-    <h2 class="section-title">✨ FITUR UNGGULAN</h2>
+    <h2 class="section-title">🎮 SISTEM ROLEPLAY</h2>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3>Anti-Cheat & DDOS</h3>
-        <p>Sistem proteksi ganda untuk pengalaman bermain tanpa gangguan.</p>
+      <div class="card">
+        <h3>Ekonomi Realistis</h3>
+        <p>Sistem gaji, pajak, belanja properti, dan investasi. Uang tidak mudah didapat!</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎙️</div>
-        <h3>Voice System</h3>
-        <p>Port voice aktif — komunikasi real-time dengan pemain lain.</p>
+      <div class="card">
+        <h3>Pekerjaan & Fraksi</h3>
+        <p>Polisi, dokter, sopir taksi, mekanik, LSM, hingga kriminal — semua tersedia!</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">💾</div>
-        <h3>Auto Backup</h3>
-        <p>Data karakter aman berkat backup harian otomatis.</p>
+      <div class="card">
+        <h3>Interaksi Sosial</h3>
+        <p>Sistem pacaran, pernikahan, keluarga, dan komunitas rumah bersama (shared house).</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚙️</div>
-        <h3>Custom GameMode</h3>
-        <p>Roleplay realistis dengan sistem ekonomi, pekerjaan, dan hukum.</p>
+      <div class="card">
+        <h3>Fitur Teknis</h3>
+        <p>Voice chat, inventory, ATM, GPS, sistem kesehatan, dan save otomatis.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Gabung -->
+  <section>
+    <div id="join">
+      <h2 class="section-title">🟢 SIAP BERMAIN?</h2>
+      <p style="max-width: 600px; margin: 0 auto 20px; color: var(--text-muted);">
+        Pastikan kamu sudah memahami aturan. Server aktif 24/7!
+      </p>
+      <div class="ip-display">194.102.181.219:8366</div>
+      <a href="samp://194.102.181.219:8366" class="btn">Main Sekarang</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Shared House Roleplay — Dikelola oleh Ditzz Network 💎</p>
-    <p>Hubungi Admin: <a href="https://wa.me/6285191923519" style="color:#00ffc6; text-decoration: none;">+62 851-9192-3519</a></p>
+    © 2025 Shared House Roleplay — Server SA:MP Roleplay Indonesia
+    <br>
+    Managed with ❤️ by Ditzz
   </footer>
 
   <a href="#home" class="scroll-top" id="scrollTop">↑</a>
 
-  <!-- Scripts -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Script -->
   <script>
-    // Salin IP
-    document.getElementById('ipAddress').addEventListener('click', function() {
+    document.getElementById('ipBox').addEventListener('click', () => {
       const ip = "194.102.181.219:8366";
       navigator.clipboard.writeText(ip).then(() => {
-        const original = this.innerHTML;
-        this.innerHTML = "✅ Disalin ke clipboard!";
-        setTimeout(() => this.innerHTML = original, 2000);
+        const el = document.getElementById('ipBox');
+        const orig = el.textContent;
+        el.textContent = "✅ IP Disalin!";
+        setTimeout(() => el.textContent = orig, 1800);
       });
     });
 
-    // Tombol Connect (buka samp://)
-    document.getElementById('connectBtn').addEventListener('click', function() {
-      window.location.href = "samp://194.102.181.219:8366";
-    });
-
-    // Scroll Top Button
-    const scrollTopBtn = document.getElementById('scrollTop');
+    const st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) {
-        scrollTopBtn.classList.add('show');
-      } else {
-        scrollTopBtn.classList.remove('show');
-      }
+      st.classList.toggle('show', window.scrollY > 600);
     });
 
-    // Smooth Scroll (opsional)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(a.getAttribute('href'));
         if (target) {
           window.scrollTo({
             top: target.offsetTop - 80,
@@ -374,11 +397,6 @@
         }
       });
     });
-
-    // Animasi GSAP (opsional tambahan)
-    gsap.from(".logo", { duration: 1.2, y: 50, opacity: 0, ease: "power3.out" });
-    gsap.from(".tagline", { duration: 1, y: 30, opacity: 0, delay: 0.3 });
-    gsap.from(".ip-box", { duration: 1, y: 20, opacity: 0, delay: 0.6 });
   </script>
 </body>
 </html>
