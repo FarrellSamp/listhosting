@@ -10,6 +10,7 @@
   <style>
     :root {
       --primary: #00ffc6;
+      --whatsapp: #25D366;
       --bg: #03070d;
       --card-bg: rgba(10, 20, 30, 0.6);
       --text: #e0f0ff;
@@ -52,13 +53,12 @@
       z-index: -2;
     }
 
-    /* Overlay gelap agar teks tetap terbaca */
     .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 5, 10, 0.75); /* overlay gelap */
+      background: rgba(0, 5, 10, 0.75);
       z-index: -1;
     }
 
@@ -131,35 +131,49 @@
       font-size: 1.4rem;
       color: var(--primary);
       box-shadow: 0 0 20px rgba(0, 255, 198, 0.2);
-      margin: 1.5rem 0;
+      margin: 1.2rem 0;
       cursor: pointer;
       transition: all 0.3s;
     }
 
-    .ip-display:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 30px rgba(0, 255, 198, 0.4);
-    }
-
     .btn {
       display: inline-block;
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
       padding: 12px 36px;
       border-radius: 50px;
       font-weight: 600;
       font-size: 1.1rem;
-      margin-top: 1rem;
+      margin: 0.6rem 0;
+      text-decoration: none;
       transition: all 0.3s;
     }
 
-    .btn:hover {
+    .btn-connect {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-connect:hover {
       background: rgba(0, 255, 198, 0.1);
       transform: translateY(-3px);
     }
 
-    /* —————— SECTIONS (sama seperti sebelumnya) —————— */
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: white;
+      border: 2px solid var(--whatsapp);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-whatsapp:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    /* —————— SECTIONS —————— */
     section {
       padding: 90px 5%;
       max-width: 1100px;
@@ -262,6 +276,7 @@
       .hero p.subtitle { font-size: 1.1rem; }
       .ip-display { font-size: 1.2rem; padding: 14px 24px; }
       .nav-links { display: none; }
+      .btn { padding: 10px 24px; font-size: 1rem; }
     }
   </style>
 </head>
@@ -270,7 +285,6 @@
   <!-- Background Video -->
   <video autoplay muted loop playsinline id="bgVideo">
     <source src="video.mp4" type="video/mp4">
-    <!-- Jika video tidak bisa dimuat, fallback ke background solid -->
     Maaf, browser Anda tidak mendukung video background.
   </video>
 
@@ -290,7 +304,10 @@
     <h1>SHARED HOUSE ROLEPLAY</h1>
     <p class="subtitle">Server SA:MP Roleplay Realistis • Komunitas Ramah • Zero OOC • Full Custom</p>
     <div class="ip-display" id="ipBox">194.102.181.219:8366</div>
-    <a href="samp://194.102.181.219:8366" class="btn">Sambungkan ke Server</a>
+    <a href="samp://194.102.181.219:8366" class="btn btn-connect">Sambungkan ke Server</a>
+    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank" class="btn btn-whatsapp">
+      <i class="fab fa-whatsapp"></i> Gabung ke Grup WhatsApp
+    </a>
   </div>
 
   <!-- Aturan -->
@@ -355,7 +372,10 @@
         Pastikan kamu sudah memahami aturan. Server aktif 24/7!
       </p>
       <div class="ip-display">194.102.181.219:8366</div>
-      <a href="samp://194.102.181.219:8366" class="btn">Main Sekarang</a>
+      <a href="samp://194.102.181.219:8366" class="btn btn-connect">Main Sekarang</a>
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank" class="btn btn-whatsapp">
+        <i class="fab fa-whatsapp"></i> Gabung ke Grup WhatsApp
+      </a>
     </div>
   </section>
 
@@ -368,7 +388,9 @@
 
   <a href="#home" class="scroll-top" id="scrollTop">↑</a>
 
-  <!-- Script -->
+  <!-- Font Awesome for WhatsApp icon -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <script>
     document.getElementById('ipBox').addEventListener('click', () => {
       const ip = "194.102.181.219:8366";
